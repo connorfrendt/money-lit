@@ -1,12 +1,12 @@
 <template>
     <div id="flex-box">
         <div
-            v-for="need in needs"
-            :key="need"
+            v-for="item in wordBox"
+            :key="item"
             class="foo"
         >
             <div class="bar">
-                {{ need }}
+                {{ item }}
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 export default {
     data() {
         return {
-            needs: ['Food', 'Water', 'Shelter']
+            wordBox: ['Food', 'Water', 'Shelter']
         }
     }
 }
