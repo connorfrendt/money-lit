@@ -18,6 +18,9 @@ export default {
         return {
             wordBox: ['Food', 'Water', 'Shelter']
         }
+    },
+    methods: {
+        
     }
 }
 </script>
