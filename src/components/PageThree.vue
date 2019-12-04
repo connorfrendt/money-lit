@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div id="flex-box">
         <div
             v-for="need in needs"
             :key="need"
+            class="foo"
         >
-            <div>
+            <div class="bar">
                 {{ need }}
             </div>
         </div>
@@ -22,5 +23,13 @@ export default {
 </script>
 
 <style>
+    
+    #flex-box {
+        display: flex;
+        justify-content: space-around
+    }
+    .foo {
+        border: 1px solid black;
+    }
 
 </style>
