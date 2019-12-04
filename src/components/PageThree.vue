@@ -1,12 +1,23 @@
 <template>
     <div>
-        <p>Page Three!!</p>
+        <div
+            v-for="need in needs"
+            :key="need"
+        >
+            <div>
+                {{ need }}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            needs: ['Food', 'Water', 'Shelter']
+        }
+    }
 }
 </script>
 

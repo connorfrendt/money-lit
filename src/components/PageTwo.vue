@@ -1,10 +1,12 @@
 <template>
-  <h1>Page 2</h1>
+    <div>
+      <div></div>
+    </div>
 </template>
 
 <script>
 export default {
-
+    
 }
 </script>
 
