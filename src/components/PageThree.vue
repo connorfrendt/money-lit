@@ -1,38 +1,47 @@
 <template>
-    <div id="flex-box">
-        <div
-            v-for="item in wordBox"
-            :key="item"
-            class="foo"
+    <div>
+        <draggable
+            v-model="wordBox"
+            @end="onEnd"
         >
-            <div class="bar">
-                {{ item }}
-            </div>
-        </div>
+            <transition-group type="transition">
+                <div
+                    v-for="item in wordBox"
+                    :key="item"
+                >
+                    <div>{{ item }}</div>
+                </div>
+            </transition-group>
+        </draggable>
     </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
+
 export default {
     data() {
         return {
-            wordBox: ['Food', 'Water', 'Shelter']
+            wordBox: ['Food', 'Water', 'Shelter'],
+            oldIndex: '',
+            newIndex: ''
         }
     },
+    components: {
+        draggable
+    },
     methods: {
-        
+        onEnd(event) {
+            console.log(event);
+            this.oldIndex = event.oldIndex;
+            this.newIndex = event.newIndex;
+        }
     }
 }
 </script>
 
 <style>
-    
-    #flex-box {
-        display: flex;
-        justify-content: space-around
-    }
     .foo {
         border: 1px solid black;
     }
-
 </style>
