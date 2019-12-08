@@ -2,8 +2,8 @@
     <div id="footer">
         <hr />
         <div id="buttons">
-            <button>&lt;&#8209; BACK</button>
-            <button @click="nextPage()">NEXT &#8209;&gt;</button>
+            <button id="back">&lt;&#8209; BACK</button>
+            <button id="next" @click="nextPage()">NEXT &#8209;&gt;</button>
         </div>
     </div>
 </template>
@@ -20,7 +20,6 @@ export default {
     methods: {
         nextPage() {
             console.log('hello');
-            return this.pages[1];
         }
     }
 }
@@ -29,7 +28,7 @@ export default {
 <style>
 #footer {
     position: fixed;
-    bottom: 30px;
+    bottom: 45px;
     width: 100vw;
 }
 
@@ -39,5 +38,14 @@ export default {
     position: fixed;
     bottom: 10px;
     width: 100vw;
+}
+
+#back {
+    padding: 10px;
+    margin-right: 5px;
+}
+#next {
+    padding: 10px;
+    margin-left: 5px;
 }
 </style>
