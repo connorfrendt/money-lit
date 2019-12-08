@@ -8,8 +8,9 @@
                 <div
                     v-for="item in wordBox"
                     :key="item"
-                    class="foo"
+                    class="items"
                 >
+                    <img :src="getImageURL"/>
                     <div id="word-box-item">{{ item }}</div>
                 </div>
             </transition-group>
@@ -38,19 +39,29 @@ export default {
         onEnd(event) {
             this.oldIndex = event.oldIndex;
             this.newIndex = event.newIndex;
+        },
+        getImageURL() {
+            return '../assets/games.jpeg'
         }
     }
 }
 </script>
 
 <style>
-    #word-box {
-        display: grid;
-        grid-template: repeat(3, 1fr) / repeat(7, 1fr);
-    }
+#word-box {
+    display: grid;
+    grid-template: repeat(3, minmax(150px, 1fr)) / repeat(7, 1fr);
+}
 
-    .foo {
-        border: 1px solid black;
-        text-align: center;
-    }
+.items {
+    border: 1px solid black;
+    text-align: center;
+    position: relative;
+}
+
+#word-box-item {
+    /* position: absolute; */
+    bottom: 0;
+    margin: 0 auto;
+}
 </style>
