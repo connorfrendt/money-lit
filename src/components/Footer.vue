@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div id="footer">
         <hr />
-        <button>&lt;&#8209; BACK</button>
-        <button @click="nextPage()">NEXT &#8209;&gt;</button>
+        <div id="buttons">
+            <button>&lt;&#8209; BACK</button>
+            <button @click="nextPage()">NEXT &#8209;&gt;</button>
+        </div>
     </div>
 </template>
 
@@ -25,5 +27,17 @@ export default {
 </script>
 
 <style>
+#footer {
+    position: fixed;
+    bottom: 30px;
+    width: 100vw;
+}
 
+#buttons {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 10px;
+    width: 100vw;
+}
 </style>

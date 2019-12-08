@@ -4,13 +4,13 @@
             v-model="wordBox"
             @end="onEnd"
         >
-            <transition-group id="bar">
+            <transition-group id="word-box">
                 <div
                     v-for="item in wordBox"
                     :key="item"
                     class="foo"
                 >
-                    <div>{{ item }}</div>
+                    <div id="word-box-item">{{ item }}</div>
                 </div>
             </transition-group>
         </draggable>
@@ -44,12 +44,13 @@ export default {
 </script>
 
 <style>
-    #bar {
+    #word-box {
         display: grid;
         grid-template: repeat(3, 1fr) / repeat(7, 1fr);
     }
 
     .foo {
         border: 1px solid black;
+        text-align: center;
     }
 </style>
