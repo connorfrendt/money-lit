@@ -17,13 +17,13 @@
                 <!-- <hr /> -->
                 <p>
                     Need to register?
-                    <button @click="method === 'signup'">Sign Up</button>
+                    <button @click="onSignUp">Sign Up</button>
                 </p>
             </form>
         </div>
 
         <div v-else>
-            <form @submit.prevent="onSignUp">
+            <form @submit.prevent="method === 'signup'">
                 <h3>Sign Up:</h3>
             </form>
         </div>
@@ -41,10 +41,10 @@ export default {
     },
     methods: {
         onSignIn() {
-            console.log('Sign In');
+            console.log('SIGN IN');
         },
         onSignUp() {
-            console.log('Sign Up');
+            console.log('SIGN UP');
         }
     }
 }
