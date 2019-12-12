@@ -41,10 +41,10 @@ export default {
     },
     methods: {
         onSignIn() {
-            
+            console.log('Sign In');
         },
         onSignUp() {
-
+            console.log('Sign Up');
         }
     }
 }
