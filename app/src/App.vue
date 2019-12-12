@@ -5,9 +5,9 @@
             id="header"
         />
         <RouterView></RouterView>
-        <Footer
+        <!-- <Footer
             id="footer"
-        />
+        /> -->
     </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     name: 'app',
     components: {
         Header,
-        Footer
+        // Footer
     }
 }
 </script>

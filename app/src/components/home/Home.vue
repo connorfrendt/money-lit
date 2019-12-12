@@ -1,7 +1,10 @@
 <template>
     <div>
+        <h2>Description:</h2>
         <p>Understanding the difference between <i>needs</i> and <i>wants</i> helps you be strategic about your spending.</p>
-        <p>Let's start with needs!</p>
+        <p>
+            <RouterLink to="/Auth">Go To Something</RouterLink>
+        </p>
     </div>
 </template>
 

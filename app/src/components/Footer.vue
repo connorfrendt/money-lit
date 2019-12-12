@@ -11,15 +11,12 @@
 <script>
 export default {
     data() {
-        return {
-            to: Function,
-            // currentPage: '/',
-            pages: ['/', '/PageTwo', 'PageThree']
-        }
+        
     },
     methods: {
         nextPage() {
             console.log('hello');
+            console.log('world');
         }
     }
 }

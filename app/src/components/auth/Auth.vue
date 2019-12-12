@@ -1,7 +1,7 @@
 <template>
     <section>
         <div v-if="method === 'signin'">
-            <form @submit.prevent="onSignIn">
+            <form @submit.prevent="onSignIn(profile)">
                 <h3>Log In:</h3>
                     <div>
                         <label>Username:
@@ -35,8 +35,11 @@ export default {
     data() {
         return {
             method: 'signin',
-            signIn: {},
-            signUp: {}
+            error: '',
+            profile: {
+                username: '',
+                password: ''
+            }
         }
     },
     methods: {
