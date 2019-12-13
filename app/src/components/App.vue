@@ -11,20 +11,23 @@
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </nav>
         </header>
-
+        
         <main>
-            <RouterView v-if="user" :user="user"/>
-            <Auth v-else
+            <RouterView
+                :user="user"
                 :onSignUp="handleSignUp"
+                :onSignIn="handleSignIn"
+            />
+            <!-- <Auth
                 
-                />
+                /> -->
         </main>
     </div>
 </template>
 
 <script>
 import api from '../services/api';
-import Auth from './auth/Auth';
+// import Auth from './auth/Auth';
 
 export default {
     data() {
@@ -33,7 +36,7 @@ export default {
         };
     },
     components: {
-        Auth
+        // Auth
     },
     created() {
         const json = window.localStorage.getItem('profile');
@@ -42,6 +45,12 @@ export default {
     methods: {
         handleSignUp(profile) {
             return api.signUp(profile)
+                .then(user => {
+                    this.setUser(user);
+                });
+        },
+        handleSignIn(credentials) {
+            return api.signUp(credentials)
                 .then(user => {
                     this.setUser(user);
                 });
