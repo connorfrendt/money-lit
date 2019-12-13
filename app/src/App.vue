@@ -1,25 +1,37 @@
 <template>
     <div id="app">
-        <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <Header
-            id="header"
-        />
+        <!-- <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet"> -->
+        <header>
+            <span v-if="user">
+                Welcome {{ user.username }}
+            </span>
+            <nav id="navbar" v-if="user">
+                <RouterLink class="nav" to="/">Home</RouterLink>
+                <RouterLink class="nav" to="/PageTwo">PageTwo</RouterLink>
+                <a href="#" class="nav" @click="handleLogout">Logout</a>
+            </nav>
+        </header>
+
+
         <RouterView></RouterView>
-        <!-- <Footer
-            id="footer"
-        /> -->
     </div>
 </template>
 
 <script>
-import Header from './components/Header';
-import Footer from './components/Footer';
-
 export default {
-    name: 'app',
+    data() {
+        return {
+            user: null
+        };
+    },
     components: {
-        Header,
-        // Footer
+        
+    },
+    methods: {
+        handleLogout() {
+            this.setUser(null);
+            this.$router.push('/');
+        }
     }
 }
 </script>

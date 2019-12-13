@@ -2,22 +2,22 @@
     <section>
         <div v-if="method === 'signin'">
             <form @submit.prevent="onSignIn(profile)">
-                <h3>Log In:</h3>
+                <h3>Sign In:</h3>
                     <div>
                         <label>Username:
-                            <input v-model="signIn.username">
+                            <input v-model="profile.username">
                         </label>
                     </div>
                     <div>
                         <label>Password:
-                            <input v-model="signIn.password" type="password">
+                            <input v-model="profile.password" type="password">
                         </label>
                     </div>
-                <button>Log In</button>
-                <!-- <hr /> -->
+                <button>Sign In</button>
+                
                 <p>
                     Need to register?
-                    <button @click="onSignUp">Sign Up</button>
+                    <button @click="method === 'signup'">Sign Up</button>
                 </p>
             </form>
         </div>
@@ -25,6 +25,19 @@
         <div v-else>
             <form @submit.prevent="method === 'signup'">
                 <h3>Sign Up:</h3>
+                    <label>
+                        Username:
+                        <input v-model="profile.username">
+                    </label>
+
+                    <label>
+                        Password:
+                        <input type="password" v-model="profile.password">
+                    </label>
+
+                    <label>
+                        <button>Sign Up</button>
+                    </label>
             </form>
         </div>
     </section>
@@ -45,6 +58,8 @@ export default {
     methods: {
         onSignIn() {
             console.log('SIGN IN');
+            this.error = '';
+            
         },
         onSignUp() {
             console.log('SIGN UP');
