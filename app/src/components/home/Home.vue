@@ -5,7 +5,7 @@
         <p>
             <RouterLink to="/Auth">Quick Sign Up</RouterLink>
             <br />
-            <RouterLink to="/Auth">Log In</RouterLink>
+            <RouterLink to="/Auth" >Log In</RouterLink>
         </p>
     </div>
 </template>
