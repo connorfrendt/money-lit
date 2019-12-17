@@ -50,7 +50,7 @@ export default {
                 });
         },
         handleSignIn(credentials) {
-            return api.signUp(credentials)
+            return api.signIn(credentials)
                 .then(user => {
                     this.setUser(user);
                 });

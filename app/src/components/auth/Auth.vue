@@ -14,12 +14,12 @@
                         </label>
                     </div>
                 <button>Sign In</button>
-                
+            </form>
                 <p>
                     Need to register?
                     <button @click="method = 'signup'">Sign Up</button>
                 </p>
-            </form>
+            
         </div>
 
         <div v-else>
@@ -30,22 +30,22 @@
                             Username:
                             <input v-model="profile.username">
                         </label>
-
+                        <br />
                         <label>
                             Password:
                             <input type="password" v-model="profile.password">
                         </label>
-
+                        <br />
                         <label>
                             <button>Sign Up</button>
                         </label>
                 </div>
-
+            </form>
                 <p>
                     Already have an account?
                     <button @click="method = 'signin'">Sign In</button>
                 </p>
-            </form>
+            
         </div>
 
         <pre v-if="error">{{ error }}</pre>
@@ -79,9 +79,9 @@ export default {
         },
         handleSignUpSubmit() {
             this.error = '';
-            console.log('Sign Up Page');
             this.onSignUp(this.profile)
                 .catch(error => {
+                    console.log('Auth Sign Up ERROR');
                     this.error = error.error;
                 });
         }
