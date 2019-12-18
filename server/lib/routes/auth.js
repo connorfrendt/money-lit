@@ -40,9 +40,11 @@ router
     })
 
     .post('/signin', (req, res) => {
+        console.log('REQUEST', req.body);
         const body = req.body;
         const username = body.username;
-        const password = body.passowrd;
+        const password = body.password;
+        console.log(password);
 
         if(!username || !password) {
             res.status(400).json({ error: 'Username and password required' });

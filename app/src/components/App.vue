@@ -13,13 +13,12 @@
         </header>
         
         <main>
-            <!-- <RouterView
+            <RouterView
                 :user="user"
                 :onSignUp="handleSignUp"
                 :onSignIn="handleSignIn"
-            /> -->
+            />
             <Auth
-                :user="user"
                 :onSignUp="handleSignUp"
                 :onSignIn="handleSignIn"
                 />
