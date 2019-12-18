@@ -13,21 +13,23 @@
         </header>
         
         <main>
-            <RouterView
+            <!-- <RouterView
                 :user="user"
                 :onSignUp="handleSignUp"
                 :onSignIn="handleSignIn"
-            />
-            <!-- <Auth
-                
-                /> -->
+            /> -->
+            <Auth
+                :user="user"
+                :onSignUp="handleSignUp"
+                :onSignIn="handleSignIn"
+                />
         </main>
     </div>
 </template>
 
 <script>
 import api from '../services/api';
-// import Auth from './auth/Auth';
+import Auth from './auth/Auth';
 
 export default {
     data() {
@@ -36,18 +38,22 @@ export default {
         };
     },
     components: {
-        // Auth
+        Auth
     },
     created() {
         const json = window.localStorage.getItem('profile');
-        if(json) this.setUser(JSON.parse(json));
+        if(json) {
+            this.setUser(JSON.parse(json));
+        }
     },
     methods: {
         handleSignUp(profile) {
             return api.signUp(profile)
                 .then(user => {
+                    console.log('////////here////////\n', user);
                     this.setUser(user);
-                });
+                })
+                .then(asdf => console.log(asdf));
         },
         handleSignIn(credentials) {
             return api.signIn(credentials)

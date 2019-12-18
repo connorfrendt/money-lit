@@ -81,7 +81,7 @@ export default {
             this.error = '';
             this.onSignUp(this.profile)
                 .catch(error => {
-                    console.log('Auth Sign Up ERROR');
+                    // console.error('**Auth Sign Up ERROR**', error);
                     this.error = error.error;
                 });
         }

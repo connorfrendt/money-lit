@@ -15,7 +15,7 @@ router
         client.query(`
             SELECT Id
              FROM profile
-             WHERE username = $1;
+             WHERE Username = $1;
         `,
         [username])
             .then(result => {
@@ -67,4 +67,4 @@ router
             });
     });
 
-    module.exports = router;
+module.exports = router;

@@ -27,11 +27,12 @@ export default {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
                 console.log('***SIGN UP RESPONSE***', response);
-                if(!response.ok) {
-                    console.log('***SIGN UP NOT OK***');
+                console.log('***SIGN UP PROFILE***', profile);
+                if(response.ok) {
+                    console.log('***SIGN UP OK***\n', response);
                     return response.json();
                 }
-                console.log('sign up after if');
+                
                 return response.json()
                     .then(error => {
                         console.error('***SIGN UP ERROR***', error);
