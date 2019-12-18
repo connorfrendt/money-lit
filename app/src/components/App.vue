@@ -6,7 +6,6 @@
                 Welcome {{ user.username }}
             </span>
             <nav id="navbar" v-if="user">
-                <RouterLink class="nav" to="/">Home</RouterLink>
                 <RouterLink class="nav" to="/PageTwo">PageTwo</RouterLink>
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </nav>
@@ -14,11 +13,10 @@
         
         <main>
             <RouterView
+                v-if="user"
                 :user="user"
-                :onSignUp="handleSignUp"
-                :onSignIn="handleSignIn"
             />
-            <Auth
+            <Auth v-else
                 :onSignUp="handleSignUp"
                 :onSignIn="handleSignIn"
                 />
