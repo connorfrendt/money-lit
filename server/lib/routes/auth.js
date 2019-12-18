@@ -20,6 +20,7 @@ router
         [username])
             .then(result => {
                 if(result.rows.length > 0) {
+                    console.log('here');
                     res.status(400).json({ error: 'Username already exists' });
                     return;
                 }

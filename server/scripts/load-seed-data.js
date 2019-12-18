@@ -5,7 +5,7 @@ client.query(`
     VALUES ($1, $2)
     RETURNING Id;
 `,
-['user1', 'user1'])
+['admin', 'password'])
     .then(result => {
         const profile = result.rows[0];
     })

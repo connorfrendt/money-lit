@@ -26,10 +26,9 @@ export default {
     signUp(profile) {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
-                console.log('***SIGN UP RESPONSE***', response);
-                console.log('***SIGN UP PROFILE***', profile);
+                console.log('***SIGN UP RESPONSE***', response.status);
+                console.log('***SIGN UP SUCCESSFUL***\n', 'Username: ', profile.username, '\nPassword: ', profile.password);
                 if(response.ok) {
-                    console.log('***SIGN UP OK***\n', response);
                     return response.json();
                 }
                 
@@ -44,7 +43,7 @@ export default {
     signIn(credentials) {
         return fetch('/api/auth/signin', getOptions('POST', credentials))
             .then(response => {
-                console.log('***SIGN IN RESPONSE***', response);
+                console.log('***SIGN IN RESPONSE***', response.status);
                 if(response.ok) {
                     console.log('***SIGN IN OK***');
                     return response.json();
