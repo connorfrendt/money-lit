@@ -72,6 +72,7 @@ export default {
     methods: {
         handleSignInSubmit() {
             this.error = '';
+            console.log(this.profile);
             this.onSignIn(this.profile)
                 .catch(error => {
                     this.error = error.error;

@@ -34,7 +34,6 @@ export default {
                 
                 return response.json()
                     .then(error => {
-                        console.error('***SIGN UP ERROR***', error);
                         return Promise.reject(error);
                     });
             });
