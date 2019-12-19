@@ -47,11 +47,14 @@ export default {
         handleSignUp(profile) {
             return api.signUp(profile)
                 .then(user => {
-                    console.log('////////here////////\n', user);
+                    console.log('////////here////////\n', 'the user is', user);
                     this.setUser(user);
                 })
+                .then(thisUser => {
+                    console.log(thisUser);
+                })
                 .catch(() => {
-                    console.log(profile);
+                    console.error(profile);
                 })
         },
         handleSignIn(credentials) {

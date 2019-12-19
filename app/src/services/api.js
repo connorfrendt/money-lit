@@ -36,7 +36,10 @@ export default {
                     .then(error => {
                         return Promise.reject(error);
                     });
-            });
+            })
+            .catch(() => {
+                console.log('hmmmm');
+            })
     },
 
     signIn(credentials) {
@@ -44,7 +47,6 @@ export default {
             .then(response => {
                 console.log('***SIGN IN RESPONSE***', response.status);
                 if(response.ok) {
-                    console.log('***SIGN IN OK***');
                     return response.json();
                 }
 
