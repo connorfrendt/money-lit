@@ -50,7 +50,9 @@ export default {
                     console.log('////////here////////\n', user);
                     this.setUser(user);
                 })
-                .then(asdf => console.log(asdf));
+                .catch(() => {
+                    console.log(profile);
+                })
         },
         handleSignIn(credentials) {
             return api.signIn(credentials)

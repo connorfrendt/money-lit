@@ -14,12 +14,12 @@
                         </label>
                     </div>
                 <button>Sign In</button>
-            </form>
+            
                 <p>
                     Need to register?
                     <button @click="method = 'signup'">Sign Up</button>
                 </p>
-            
+            </form>
         </div>
 
         <div v-else>
@@ -40,12 +40,12 @@
                             <button>Sign Up</button>
                         </label>
                 </div>
-            </form>
+            
                 <p>
                     Already have an account?
                     <button @click="method = 'signin'">Sign In</button>
                 </p>
-            
+            </form>
         </div>
 
         <pre v-if="error">{{ error }}</pre>
@@ -72,7 +72,7 @@ export default {
     methods: {
         handleSignInSubmit() {
             this.error = '';
-            console.log(this.profile);
+            
             this.onSignIn(this.profile)
                 .catch(error => {
                     this.error = error.error;
