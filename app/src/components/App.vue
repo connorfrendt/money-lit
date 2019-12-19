@@ -3,10 +3,10 @@
         <!-- <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet"> -->
         <header>
             <span v-if="user">
-                Welcome {{ user.username }}
+                Welcome {{ changeName(user.username) }}
             </span>
             <nav id="navbar" v-if="user">
-                <RouterLink class="nav" to="/PageTwo">PageTwo</RouterLink>
+                <!-- <RouterLink class="nav" to="/PageTwo">PageTwo</RouterLink> -->
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </nav>
         </header>
@@ -74,6 +74,9 @@ export default {
                 window.localStorage.removeItem('profile');
             }
         },
+        changeName(name) {
+            return api.normalize(name);
+        },
         handleLogout() {
             this.setUser(null);
             this.$router.push('/');
@@ -83,8 +86,18 @@ export default {
 </script>
 
 <style>
+#app {
+    text-align: center;
+    margin-top: 60px;
+}
+
 body {
     background-color: rgba(255, 255, 255, 1);
+}
+
+#navbar {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .nav {

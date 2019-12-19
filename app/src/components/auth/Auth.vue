@@ -6,12 +6,12 @@
                     <h3>Sign In:</h3>
                         <div>
                             <label>Username:
-                                <input v-model="profile.username" required>
+                                <input v-model="profile.username">
                             </label>
                         </div>
                         <div>
                             <label>Password:
-                                <input v-model="profile.password" type="password" required>
+                                <input v-model="profile.password" type="password">
                             </label>
                         </div>
                     <button>Sign In</button>
@@ -30,18 +30,17 @@
                     <h3>Sign Up:</h3>
                         <label>
                             Username:
-                            <input v-model="profile.username" required>
+                            <input v-model="profile.username" minlength="1" required>
                         </label>
                         <br />
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password" required>
+                            <input type="password" v-model="profile.password" minlength="1" required>
                         </label>
                         <br />
                         <label>
                             <button>Sign Up</button>
                         </label>
-                
                         <hr />
                         <p>
                             Already have an account?
@@ -104,6 +103,7 @@ label {
     padding: 10px;
     background: rgb(230, 228, 228);
     box-shadow: 4px 4px 10px black;
+    text-align: center;
 }
 
 pre {

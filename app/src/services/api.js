@@ -27,6 +27,7 @@ export default {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
                 console.log(`***SIGN UP ${response.statusText}***\n`, response.status, '\n', 'Username: ', profile.username, '\nPassword: ', profile.password);
+
                 if(response.ok) {
                     return response.json();
                 }
@@ -44,16 +45,24 @@ export default {
     signIn(credentials) {
         return fetch('/api/auth/signin', getOptions('POST', credentials))
             .then(response => {
-                console.log('***SIGN IN RESPONSE***', response.status);
                 if(response.ok) {
                     return response.json();
                 }
 
                 return response.json()
                     .then(error => {
-                        console.log('***SIGN IN ERROR***', error);
                         return Promise.reject(error);
                     });
             });
+    },
+
+    normalize(username) {
+        let splitUsername = username.split('');
+        for(let i = 0; i < splitUsername.length; i++) {
+            if(i === 0) splitUsername[i] = splitUsername[i].toUpperCase();
+            if(i > 0) splitUsername[i] = splitUsername[i].toLowerCase();
+        }
+        
+        return splitUsername.join('');
     }
 }
