@@ -26,8 +26,7 @@ export default {
     signUp(profile) {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
-                console.log('***SIGN UP RESPONSE***', response.status);
-                console.log('***SIGN UP SUCCESSFUL***\n', 'Username: ', profile.username, '\nPassword: ', profile.password);
+                console.log(`***SIGN UP ${response.statusText}***\n`, response.status, '\n', 'Username: ', profile.username, '\nPassword: ', profile.password);
                 if(response.ok) {
                     return response.json();
                 }
@@ -37,9 +36,9 @@ export default {
                         return Promise.reject(error);
                     });
             })
-            .catch(() => {
-                console.log('hmmmm');
-            })
+            // .catch(error => {
+            //     console.error(error);
+            // })
     },
 
     signIn(credentials) {

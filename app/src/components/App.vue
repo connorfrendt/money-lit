@@ -51,11 +51,11 @@ export default {
                     this.setUser(user);
                 })
                 .then(thisUser => {
-                    console.log(thisUser);
+                    console.log('this user', thisUser);
                 })
-                .catch(() => {
-                    console.error(profile);
-                })
+                // .catch(() => {
+                //     console.error('profile', profile);
+                // })
         },
         handleSignIn(credentials) {
             return api.signIn(credentials)
@@ -84,8 +84,15 @@ export default {
 
 <style>
 body {
-    background-color: rgba(50, 205, 50, 0.537);
+    background-color: rgba(255, 255, 255, 1);
 }
+
+.nav {
+    padding: 5px;
+    margin: 0 5px;
+    border: 1px solid black;
+}
+
 #header {
     font-family: 'Bebas Neue', cursive;
 }
