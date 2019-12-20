@@ -3,24 +3,28 @@
         <div v-if="method === 'signin'">
             <form @submit.prevent="handleSignInSubmit(profile)">
                 <div class="sign-in">
-                    <h3>Sign In:</h3>
-                        <div>
-                            <label>Username:
-                                <input v-model="profile.username">
-                            </label>
-                        </div>
-                        <div>
-                            <label>Password:
-                                <input v-model="profile.password" type="password">
-                            </label>
-                        </div>
-                    <button>Sign In</button>
-                    <hr />
-                    <p>
-                        Need to register?
-                        <button @click="method = 'signup'">Sign Up</button>
-                    </p>
+                    <h2>Sign In:</h2>
+                        
+                        <label>
+                            Username:
+                            <input v-model="profile.username">
+                        </label>
+                    
+                    
+                        <label>
+                            Password:
+                            <input type="password" v-model="profile.password">
+                        </label>
+                        
+                        <label>
+                            <button>Sign In</button>
+                        </label>
                 </div>
+                <p>
+                    Need to register?
+                    <button @click="method = 'signup'">Sign Up</button>
+                </p>
+                
             </form>
         </div>
 
@@ -30,23 +34,23 @@
                     <h3>Sign Up:</h3>
                         <label>
                             Username:
-                            <input v-model="profile.username" required>
+                            <input v-model="profile.username">
                         </label>
-                        <br />
+                        
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password" required>
+                            <input type="password" v-model="profile.password">
                         </label>
-                        <br />
+                        
                         <label>
                             <button>Sign Up</button>
                         </label>
-                        <hr />
-                        <p>
-                            Already have an account?
-                            <button @click="method = 'signin'">Sign In</button>
-                        </p>
                 </div>
+                <p>
+                    Already have an account?
+                    <button @click="method = 'signin'">Sign In</button>
+                </p>
+                
             </form>
         </div>
 
@@ -65,7 +69,7 @@ export default {
                 username: '',
                 password: ''
             }
-        }
+        };
     },
     props: {
         onSignIn: Function,
@@ -73,6 +77,7 @@ export default {
     },
     methods: {
         handleSignInSubmit() {
+            console.log('asdfasdf', this.method);
             this.error = '';
             
             this.onSignIn(this.profile)
@@ -81,6 +86,7 @@ export default {
                 });
         },
         handleSignUpSubmit() {
+            console.log('UP', this.method);
             this.error = '';
             this.onSignUp(this.profile)
                 .catch(error => {
@@ -88,7 +94,7 @@ export default {
                 });
         }
     }
-}
+};
 </script>
 
 <style>

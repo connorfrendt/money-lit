@@ -1,6 +1,3 @@
-// 20191220100921
-// https://raw.githubusercontent.com/connorfrendt/goals/master/app/.eslintrc
-
 {
     "extends": [
       "eslint:recommended",
@@ -26,7 +23,7 @@
       "no-console": "off",
       "indent": [
         "error",
-        2,
+        4,
         {
           "SwitchCase": 1
         }

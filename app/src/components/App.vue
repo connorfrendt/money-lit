@@ -52,10 +52,7 @@ export default {
                 })
                 .then(thisUser => {
                     console.log('this user', thisUser);
-                })
-                // .catch(() => {
-                //     console.error('profile', profile);
-                // })
+                });
         },
         handleSignIn(credentials) {
             return api.signIn(credentials)

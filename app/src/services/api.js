@@ -16,7 +16,7 @@ const getOptions = (method, data) => {
     }
 
     return options;
-}
+};
 
 export default {
     setToken(t) {
@@ -34,15 +34,14 @@ export default {
                 
                 return response.json()
                     .then(error => {
+                        console.log('here');
                         return Promise.reject(error);
                     });
             });
-            // .catch(error => {
-            //     console.error(error);
-            // })
     },
 
     signIn(credentials) {
+        console.log('CREDENTIALS', credentials);
         return fetch('/api/auth/signin', getOptions('POST', credentials))
             .then(response => {
                 if(response.ok) {
@@ -65,4 +64,4 @@ export default {
         
         return splitUsername.join('');
     }
-}
+};
