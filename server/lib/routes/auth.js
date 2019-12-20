@@ -20,7 +20,6 @@ router
         [username])
             .then(result => {
                 if(result.rows.length > 0) {
-                    console.log('here');
                     res.status(400).json({ error: 'Username already exists' });
                     return;
                 }
@@ -44,7 +43,6 @@ router
         const body = req.body;
         const username = body.username;
         const password = body.password;
-        console.log(password);
 
         if(!username || !password) {
             res.status(400).json({ error: 'Username and password required' });
@@ -54,7 +52,7 @@ router
         client.query(`
             SELECT Id, Username, Password
              FROM profile
-             WHERE Username = $1
+             WHERE Username = $1;
         `,
         [username])
             .then(result => {
@@ -62,10 +60,10 @@ router
                     res.status(400).json({ error: 'Username or password incorrect' });
                     return;
                 }
-
+                
                 res.json({
                     id: result.rows[0].id,
-                    username: result.rows[0].username
+                    username: result.rows[0].username,
                 });
             });
     });
