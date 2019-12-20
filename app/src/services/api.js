@@ -36,7 +36,7 @@ export default {
                     .then(error => {
                         return Promise.reject(error);
                     });
-            })
+            });
             // .catch(error => {
             //     console.error(error);
             // })

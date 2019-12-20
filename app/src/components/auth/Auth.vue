@@ -30,12 +30,12 @@
                     <h3>Sign Up:</h3>
                         <label>
                             Username:
-                            <input v-model="profile.username" minlength="1" required>
+                            <input v-model="profile.username" required>
                         </label>
                         <br />
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password" minlength="1" required>
+                            <input type="password" v-model="profile.password" required>
                         </label>
                         <br />
                         <label>
