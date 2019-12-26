@@ -1,5 +1,6 @@
 <template>
     <section>
+
         <div v-if="method === 'signin'">
             <form @submit.prevent="handleSignInSubmit(profile)">
                 <div class="sign-in">
@@ -7,13 +8,12 @@
                         
                         <label>
                             Username:
-                            <input v-model="profile.username">
+                            <input v-model="profile.username" required>
                         </label>
-                    
                     
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password">
+                            <input type="password" v-model="profile.password" required>
                         </label>
                         
                         <label>
@@ -24,22 +24,21 @@
                     Need to register?
                     <button @click="method = 'signup'">Sign Up</button>
                 </p>
-                
             </form>
         </div>
 
         <div v-else>
             <form @submit.prevent="handleSignUpSubmit(profile)">
                 <div class="sign-in">
-                    <h3>Sign Up:</h3>
+                    <h2>Sign Up:</h2>
                         <label>
                             Username:
-                            <input v-model="profile.username">
+                            <input v-model="profile.username" required>
                         </label>
                         
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password">
+                            <input type="password" v-model="profile.password" required>
                         </label>
                         
                         <label>
