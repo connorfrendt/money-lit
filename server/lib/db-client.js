@@ -4,11 +4,11 @@ const Client = pg.Client;
 const client = new Client(DATABASE_URL);
 
 client.connect()
-    .then(() => console.log('***Connected to Database***', DATABASE_URL))
-    .catch(err => console.error('***Connection ERROR***', err));
+    .then(() => console.log('**************************\n* Connected to Database *\n**************************\n', DATABASE_URL, '\n\n'))
+    .catch(err => console.error('**************************\nConnection ERROR\n', err, '\n**************************'));
 
 client.on('error', err => {
-    console.error('\n**** DATABASE ERROR ****\n\n', err);
+    console.error('\n**************************\n DATABASE ERROR \n**************************\n\n\n', err);
 });
 
 module.exports = client;

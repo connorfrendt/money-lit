@@ -10,4 +10,4 @@ export default new VueRouter({
         { path: '/PageThree', component: PageThree },
         { path: '*', redirect: '/' }
     ]
-})
+});

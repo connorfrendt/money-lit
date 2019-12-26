@@ -30,7 +30,7 @@ export default {
             ],
             oldIndex: '',
             newIndex: ''
-        }
+        };
     },
     components: {
         draggable
@@ -41,10 +41,10 @@ export default {
             this.newIndex = event.newIndex;
         },
         getImageURL() {
-            return '../assets/games.jpeg'
+            return '../assets/games.jpeg';
         }
     }
-}
+};
 </script>
 
 <style>
