@@ -76,7 +76,6 @@ export default {
     },
     methods: {
         handleSignInSubmit() {
-            console.log('asdfasdf', this.method);
             this.error = '';
             
             this.onSignIn(this.profile)
@@ -85,7 +84,6 @@ export default {
                 });
         },
         handleSignUpSubmit() {
-            console.log('UP', this.method);
             this.error = '';
             this.onSignUp(this.profile)
                 .catch(error => {

@@ -39,7 +39,6 @@ router
     })
 
     .post('/signin', (req, res) => {
-        console.log('REQUEST', req.body);
         const body = req.body;
         const username = body.username;
         const password = body.password;

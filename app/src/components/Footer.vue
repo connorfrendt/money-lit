@@ -14,10 +14,7 @@ export default {
         
     },
     methods: {
-        nextPage() {
-            console.log('hello');
-            console.log('world');
-        }
+        nextPage() {}
     }
 }
 </script>
