@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!-- <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet"> -->
         <header>
             <span v-if="user">
                 Welcome {{ changeName(user.username) }}
@@ -97,9 +96,5 @@ body {
     padding: 5px;
     margin: 0 5px;
     border: 1px solid black;
-}
-
-#header {
-    font-family: 'Bebas Neue', cursive;
 }
 </style>
