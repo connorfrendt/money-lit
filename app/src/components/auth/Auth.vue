@@ -1,6 +1,6 @@
 <template>
     <section>
-
+        
         <div v-if="method === 'signin'">
             <form @submit.prevent="handleSignInSubmit(profile)">
                 <div class="sign-in">

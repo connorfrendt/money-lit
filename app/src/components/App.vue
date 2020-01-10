@@ -1,39 +1,30 @@
 <template>
     <div id="app">
-        <header>
-            <span v-if="user">
-                Welcome {{ changeName(user.username) }}
-            </span>
-            <nav id="navbar" v-if="user">
-                <!-- <RouterLink class="nav" to="/PageTwo">PageTwo</RouterLink> -->
-                <a href="#" class="nav" @click="handleLogout">Logout</a>
-            </nav>
-        </header>
-        
-        <main>
-            <RouterView
-                v-if="user"
-                :user="user"
-            />
-            <Auth v-else
-                :onSignUp="handleSignUp"
-                :onSignIn="handleSignIn"
-                />
-        </main>
+        <Auth
+            v-if="toLogIn"
+        />
+        <Home
+            v-else
+            :pizzaLogIn="toLogIn"
+        />
+        <div>{{ toLogIn }}</div>
     </div>
 </template>
 
 <script>
 import api from '../services/api';
+import Home from './home/Home';
 import Auth from './auth/Auth';
 
 export default {
     data() {
         return {
-            user: null
+            user: null,
+            toLogIn: false
         };
     },
     components: {
+        Home,
         Auth
     },
     created() {
@@ -81,10 +72,6 @@ export default {
 #app {
     text-align: center;
     margin-top: 60px;
-}
-
-body {
-    background-color: rgba(255, 255, 255, 1);
 }
 
 #navbar {
