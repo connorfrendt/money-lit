@@ -1,30 +1,43 @@
 <template>
     <div id="app">
-        <Auth
-            v-if="toLogIn"
-        />
-        <Home
-            v-else
-            :pizzaLogIn="toLogIn"
-        />
-        <div>{{ toLogIn }}</div>
+        <header>
+            <span v-if="user">
+                {{user.username}}
+                <a href="#" class="nav" @click="handleLogout">Logout</a>
+            </span>
+        </header>
+        <main>
+            <Home
+                v-if="user"
+                :user="user"
+            />
+            <RouterView
+                v-if="user"
+                :user="user"
+            />
+            <Auth
+                v-if="!user"
+                
+                :onSignUp="handleSignUp"
+                :onSignIn="handleSignIn"
+            />
+        </main>
     </div>
 </template>
 
 <script>
 import api from '../services/api';
-import Home from './home/Home';
+// import Home from './home/Home';
 import Auth from './auth/Auth';
 
 export default {
     data() {
         return {
-            user: null,
-            toLogIn: false
+            user: null
         };
     },
     components: {
-        Home,
+        // Home,
         Auth
     },
     created() {
