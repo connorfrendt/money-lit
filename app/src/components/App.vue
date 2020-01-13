@@ -2,22 +2,21 @@
     <div id="app">
         <header>
             <span v-if="user">
-                {{user.username}}
+                {{changeName(user.username)}}
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </span>
         </header>
         <main>
-            <Home
+            <!-- <Home
                 v-if="user"
                 :user="user"
-            />
+            /> -->
             <RouterView
                 v-if="user"
                 :user="user"
             />
             <Auth
                 v-if="!user"
-                
                 :onSignUp="handleSignUp"
                 :onSignIn="handleSignIn"
             />
