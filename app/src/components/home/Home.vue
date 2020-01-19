@@ -1,23 +1,28 @@
 <template>
     <div id="home">
+        <header>
+            <span v-if="user">
+                {{changeName(user.username)}}
+                <a href="#" class="nav" @click="handleLogout">Logout</a>
+            </span>
+        </header>
+
         <div v-if="$route.path === '/'">
             <h2>MoneyLit:</h2>
             <p>Understanding the difference between <i>needs</i> and <i>wants</i> helps you be strategic about your spending.</p>
             <button><RouterLink to="/Auth">TO LOG IN</RouterLink></button>
         </div>
-        <RouterView v-else />
-        <!-- <Auth
-            v-if="user"
-        />
-        <PageTwo
+        
+        <RouterView
             v-else
-        /> -->
+            :user="user"
+            :onSignUp="handleSignUp"
+            :onSignIn="handleSignIn"
+        />
     </div>
 </template>
 
 <script>
-// import Auth from '../auth/Auth';
-// import PageTwo from '../PageTwo';
 import api from '../../services/api';
 
 export default {
@@ -25,10 +30,6 @@ export default {
         return {
             user: null
         };
-    },
-    components: {
-        // Auth,
-        // PageTwo
     },
     created() {
         const json = window.localStorage.getItem('profile');
@@ -73,10 +74,6 @@ export default {
 
 <style>
 #home {
-    text-align: left;
-}
-
-p {
-    margin: 10px 0;
+    text-align: center;
 }
 </style>
