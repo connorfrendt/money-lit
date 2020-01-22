@@ -13,7 +13,7 @@
                     
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password" required>
+                            <input v-model="profile.password" type="password" required>
                         </label>
                         
                         <label>
@@ -82,6 +82,7 @@ export default {
                 .catch(error => {
                     this.error = error.error;
                 });
+            this.$router.push('/PageTwo');
         },
         handleSignUpSubmit() {
             this.error = '';
