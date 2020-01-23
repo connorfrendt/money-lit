@@ -4,7 +4,7 @@
         <draggable>
             <transition-group>
                 <div
-                    id="needs"
+                    id="needs-box"
                     v-for="n in 10"
                     :key="n"
                 ></div>
@@ -105,5 +105,10 @@ export default {
 .ghost {
     border: 5px solid red;
     /* opacity: .25; */
+}
+
+#needs-box {
+    display: grid;
+    grid-template: 
 }
 </style>
