@@ -80,12 +80,14 @@ export default {
             
             this.onSignIn(this.profile)
                 .catch(error => {
+                    console.log('ERROR', error);
                     this.error = error.error;
                 });
-            this.$router.push('/PageTwo');
+            this.$router.push('/PageThree');
         },
         handleSignUpSubmit() {
             this.error = '';
+
             this.onSignUp(this.profile)
                 .catch(error => {
                     this.error = error.error;

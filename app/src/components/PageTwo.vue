@@ -1,7 +1,7 @@
 <template>
-    <div>
-      Page Two!
-    </div>
+    <div> <!-- Main Div -->
+        
+    </div> <!-- End Main Div -->
 </template>
 
 <script>
