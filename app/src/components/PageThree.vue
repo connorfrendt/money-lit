@@ -1,5 +1,17 @@
 <template>
     <div>
+
+        <draggable>
+            <transition-group>
+                <div
+                    id="needs"
+                    v-for="n in 10"
+                    :key="n"
+                ></div>
+                <div id="wants"></div>
+            </transition-group>
+        </draggable>
+
         <draggable
             v-model="wordBox"
             ghost-class="ghost"
