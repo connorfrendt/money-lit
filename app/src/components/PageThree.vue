@@ -1,20 +1,23 @@
 <template>
     <div>
 
-        <draggable>
-            <transition-group>
+        <draggable
+            :options="{group: 'asdf'}"
+        >
+            <transition-group id="need-box">
                 <div
-                    id="needs-box"
-                    v-for="n in 10"
+                    v-for="n in 15"
                     :key="n"
-                ></div>
-                <div id="wants"></div>
+                >
+                    <div id="need-box-item">{{n}}</div>
+                </div>
             </transition-group>
         </draggable>
 
         <draggable
             v-model="wordBox"
             ghost-class="ghost"
+            :options="{group: 'asdf'}"
             @end="onEnd"
         >
             <transition-group id="word-box" type="transition" name="flip-list">
@@ -28,6 +31,7 @@
                 </div>
             </transition-group>
         </draggable>
+
     </div>
 </template>
 
@@ -94,7 +98,6 @@ export default {
 }
 
 #word-box-item {
-    bottom: 0;
     margin: 0 auto;
 }
 
@@ -107,8 +110,13 @@ export default {
     /* opacity: .25; */
 }
 
-#needs-box {
+#need-box {
     display: grid;
-    grid-template: 
+    grid-template: repeat(3, minmax(55px, 1fr)) / repeat(5, 1fr);
+}
+
+#need-box-item {
+    border: 1px solid black;
+    height: 100%;
 }
 </style>
