@@ -1,11 +1,14 @@
 <template>
     <div id="home">
         <header>
-            <span v-if="user">
-                {{ changeName(user.username) }}
+            <span v-if="user" id="header">
+                Welcome {{ changeName(user.username) }}
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </span>
         </header>
+
+        <br />
+        <br />
 
         <div v-if="$route.path === '/'">
             <h2>MoneyLit:</h2>
@@ -75,5 +78,10 @@ export default {
 <style>
 #home {
     text-align: center;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
