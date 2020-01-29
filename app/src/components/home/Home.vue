@@ -2,7 +2,7 @@
     <div id="home">
         <header>
             <span v-if="user">
-                {{changeName(user.username)}}
+                {{ changeName(user.username) }}
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </span>
         </header>
