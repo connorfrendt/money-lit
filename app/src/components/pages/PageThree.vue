@@ -1,35 +1,45 @@
 <template>
     <div>
-            <main class="flexbox">
+            <draggable
+            id="need-parent-box"
+            v-model="needsBox"
+            ghost-class="ghost"
+            group="needsAndWants"
+            @end="onEnd"
+        >
+            <transition-group id="need-box" type="transition" name="flip-list">
+                <div
+                    v-for="n in needsBox"
+                    :key="n"
+                    class="needs-items"
+                >
+                    <div id="need-box-item">{{ n.name }}</div>
+                </div>
+            </transition-group>
+        </draggable>
 
-                <Board id="board-1">
-                    <Card
-                        id="card-1"
-                        draggable="true"
-                        v-for="item in wordBox"
-                        :key="item.id"
-                    >
-                        <p>{{ item.name }}</p>
-                    </Card>
-                </Board>
 
-                <Board id="board-2">
-                    <!-- <Card
-                        id="card-2"
-                        draggable="true"
-                    >
-                        
-                    </Card> -->
-                </Board>
-
-            </main>
+        <draggable
+            v-model="wordBox"
+            ghost-class="ghost"
+            group="needsAndWants"
+            @end="onEnd"
+        >
+            <transition-group id="word-box" type="transition" name="flip-list">
+                <div
+                    v-for="item in wordBox"
+                    :key="item"
+                    class="items"
+                >
+                    <div id="word-box-item">{{ item.name }}</div>
+                </div>
+            </transition-group>
+        </draggable>
     </div>
 </template>
 
 <script>
-// import draggable from 'vuedraggable';
-import Board from './board-card/Board';
-import Card from './board-card/Card';
+import draggable from 'vuedraggable';
 
 export default {
     data() {
@@ -57,15 +67,35 @@ export default {
                 { id:20, name: 'Travel' },
                 { id:21, name: 'Gym Memberships' }
             ],
-            needsBox: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+            needsBox: [
+                { id: 1, name: '' },
+                { id: 2, name: '' },
+                { id: 3, name: '' },
+                { id: 4, name: '' },
+                { id: 5, name: '' },
+                { id: 6, name: '' },
+                { id: 7, name: '' },
+                { id: 8, name: '' },
+                { id: 9, name: '' },
+                { id:10, name: '' },
+                { id:11, name: '' },
+                { id:12, name: '' },
+                { id:13, name: '' },
+                { id:14, name: '' },
+                { id:15, name: '' },
+                { id:16, name: '' },
+                { id:17, name: '' },
+                { id:18, name: '' },
+                { id:19, name: '' },
+                { id:20, name: '' },
+                { id:21, name: '' }
+            ],
             oldIndex: '',
             newIndex: ''
         };
     },
     components: {
-        // draggable
-        Board,
-        Card
+        draggable
     },
     methods: {
         onEnd(event) {
@@ -77,52 +107,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f3f3f3;
-}
-
-.flexbox {
-    display: flex;
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 768px;
-    height: 100vh;
-
-    overflow: hidden;
-
-    margin: 0 auto;
-    padding: 15px;
-}
-
-.flexbox .board {
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-    width: 100%;
-    max-width: 300px;
-
-    background-color: #313131;
-
-    padding: 15px;
-}
-
-.flexbox .board .card {
-    padding: 15px 25px;
-    background-color: #f3f3f3;
-    cursor: move;
-    margin-bottom: 15px;
-}
-
-/*-----------------------------------------------------------------------------*/
-
-/* #need-parent-box {
+#need-parent-box {
     background-color: lightblue;
     padding: 10px;
     width: 97vw;
@@ -168,5 +153,5 @@ body {
 
 .ghost {
     background-color: lightgrey;
-} */
+}
 </style>
