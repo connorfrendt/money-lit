@@ -42,7 +42,7 @@ router
         const body = req.body;
         const username = body.username;
         const password = body.password;
-        console.log(body, username, password);
+        
         if(!username || !password) {
             res.status(400).json({ error: 'Username and password required' });
             return;
