@@ -32,17 +32,14 @@ export default {
                 
                 return response.json()
                     .then(error => {
-                        console.log('OTHER ERROR', error);
                         return Promise.reject(error);
                     });
             });
     },
 
     signIn(credentials) {
-        console.log('here is the credentials', credentials);
         return fetch('/api/auth/signin', getOptions('POST', credentials))
             .then(response => {
-                console.log('here is the response', response);
                 if(response.ok) {
                     return response.json();
                 }
