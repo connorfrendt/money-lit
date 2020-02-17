@@ -79,15 +79,15 @@ export default {
             this.error = '';
             
             this.onSignIn(this.profile)
-                // .then(() => {
-                //     this.$router.push('/PageThree');
-                // })
+                .then(() => {
+                    this.$router.push('/PageThree');
+                })
                 .catch(error => {
                     console.log('ERROR', error);
                     this.error = error.error;
                 });
-            this.$router.push('/PageThree');
         },
+
         handleSignUpSubmit() {
             this.error = '';
 
@@ -96,6 +96,7 @@ export default {
                     this.error = error.error;
                 });
         }
+        
     }
 };
 </script>
