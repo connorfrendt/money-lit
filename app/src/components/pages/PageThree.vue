@@ -1,5 +1,6 @@
 <template>
     <div>
+            <!-- Need Box -->
             <draggable
             id="need-parent-box"
             v-model="needsBox"
@@ -13,13 +14,15 @@
                     :key="n"
                     class="needs-items"
                 >
-                    <div id="need-box-item">{{ n.name }}</div>
-                    <img :src="getImgURL(n)" style="height: 50px" />
+                    <div>
+                        <div id="need-box-item">{{ n.name }}</div>
+                        <img :src="getImgURL(n)" style="height: 50px" />
+                    </div>
                 </div>
             </transition-group>
         </draggable>
 
-
+        <!-- Word Box -->
         <draggable
             v-model="wordBox"
             ghost-class="ghost"
@@ -32,8 +35,10 @@
                     :key="item"
                     class="items"
                 >
-                    <div id="word-box-item">{{ item.name }}</div>
-                    <img :src="getImgURL(item)" style="height: 50px" />
+                    <div>
+                        <div id="word-box-item">{{ item.name }}</div>
+                        <img :src="getImgURL(item)" style="height: 50px" />
+                    </div>
                 </div>
             </transition-group>
         </draggable>
@@ -131,6 +136,7 @@ export default {
 }
 
 .needs-items {
+    /* border: 1px solid black; */
     text-align: center;
     position: relative;
     cursor: move;
