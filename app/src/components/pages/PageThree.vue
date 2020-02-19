@@ -32,7 +32,7 @@
                     class="items"
                 >
                     <div id="word-box-item">{{ item.name }}</div>
-                    <img :src="require(`../../assets/${item.src}.jpg`)" />
+                    <img :src="require(`../../assets/${item.src}.jpg`)" style="height: 50px" />
                 </div>
             </transition-group>
         </draggable>
