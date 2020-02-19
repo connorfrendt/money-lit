@@ -14,6 +14,7 @@
                     class="needs-items"
                 >
                     <div id="need-box-item">{{ n.name }}</div>
+                    <img :src="getImgURL(n)" style="height: 50px" />
                 </div>
             </transition-group>
         </draggable>
@@ -32,7 +33,7 @@
                     class="items"
                 >
                     <div id="word-box-item">{{ item.name }}</div>
-                    <img :src="require(`../../assets/${item.src}.jpg`)" style="height: 50px" />
+                    <img :src="getImgURL(item)" style="height: 50px" />
                 </div>
             </transition-group>
         </draggable>
@@ -46,50 +47,50 @@ export default {
     data() {
         return {
             wordBox: [
-                { id: 1, name: 'Housing', src: 'travel' },
-                { id: 2, name: 'Food', src: 'travel' },
-                { id: 3, name: 'Clothing', src: 'travel' },
+                { id: 1, name: 'Housing', src: 'housing' },
+                { id: 2, name: 'Food', src: 'foods' },
+                { id: 3, name: 'Clothing', src: 'clothing' },
                 { id: 4, name: 'Water', src: 'travel' },
-                { id: 5, name: 'Electricity/Gas', src: 'travel' },
-                { id: 6, name: 'Transportation', src: 'travel' },
-                { id: 7, name: 'Basic Phone Plan', src: 'travel' },
-                { id: 8, name: 'Emergency Savings', src: 'travel' },
-                { id: 9, name: 'Insurance', src: 'travel' },
+                { id: 5, name: 'Electricity/Gas', src: 'electricity' },
+                { id: 6, name: 'Transportation', src: 'transportation' },
+                { id: 7, name: 'Basic Phone Plan', src: 'basic-phone-plan' },
+                { id: 8, name: 'Emergency Savings', src: 'emergency-savings' },
+                { id: 9, name: 'Insurance', src: 'insurance' },
                 { id:10, name: 'Games', src: 'games' },
                 { id:11, name: 'Coffehouse Drinks', src: 'coffee' },
                 { id:12, name: 'Eating Out', src: 'out-to-eat' },
-                { id:13, name: 'Smartphone', src: 'travel' },
-                { id:14, name: 'Brand Name/Designer Clothing', src: 'travel' },
+                { id:13, name: 'Smartphone', src: 'smartphone' },
+                { id:14, name: 'Brand Name/Designer Clothing', src: 'designer-clothing' },
                 { id:15, name: 'Theater Movies/Concerts', src: 'club-concert' },
-                { id:16, name: 'Netflix/Hulu/Amazon Prime', src: 'travel' },
-                { id:17, name: 'Spotify/Pandora/Google Play Music', src: 'travel' },
-                { id:18, name: 'Brand Name Products', src: 'travel' },
+                { id:16, name: 'Netflix/Hulu/Amazon Prime', src: 'netflix' },
+                { id:17, name: 'Spotify/Pandora/Google Play Music', src: 'spotify' },
+                { id:18, name: 'Brand Name Products', src: 'brand-name-products' },
                 { id:19, name: 'Luxury Vehicles', src: 'fancy-car' },
                 { id:20, name: 'Travel', src: 'travel' },
-                { id:21, name: 'Gym Memberships', src: 'travel' }
+                { id:21, name: 'Gym Memberships', src: 'gym-membership' }
             ],
             needsBox: [
-                { id: 1, name: '' },
-                { id: 2, name: '' },
-                { id: 3, name: '' },
-                { id: 4, name: '' },
-                { id: 5, name: '' },
-                { id: 6, name: '' },
-                { id: 7, name: '' },
-                { id: 8, name: '' },
-                { id: 9, name: '' },
-                { id:10, name: '' },
-                { id:11, name: '' },
-                { id:12, name: '' },
-                { id:13, name: '' },
-                { id:14, name: '' },
-                { id:15, name: '' },
-                { id:16, name: '' },
-                { id:17, name: '' },
-                { id:18, name: '' },
-                { id:19, name: '' },
-                { id:20, name: '' },
-                { id:21, name: '' }
+                { id: 1, name: '', src: '' },
+                { id: 2, name: '', src: '' },
+                { id: 3, name: '', src: '' },
+                { id: 4, name: '', src: '' },
+                { id: 5, name: '', src: '' },
+                { id: 6, name: '', src: '' },
+                { id: 7, name: '', src: '' },
+                { id: 8, name: '', src: '' },
+                { id: 9, name: '', src: '' },
+                { id:10, name: '', src: '' },
+                { id:11, name: '', src: '' },
+                { id:12, name: '', src: '' },
+                { id:13, name: '', src: '' },
+                { id:14, name: '', src: '' },
+                { id:15, name: '', src: '' },
+                { id:16, name: '', src: '' },
+                { id:17, name: '', src: '' },
+                { id:18, name: '', src: '' },
+                { id:19, name: '', src: '' },
+                { id:20, name: '', src: '' },
+                { id:21, name: '', src: '' }
             ],
             oldIndex: '',
             newIndex: ''
@@ -102,6 +103,12 @@ export default {
         onEnd(event) {
             this.oldIndex = event.oldIndex;
             this.newIndex = event.newIndex;
+        },
+        getImgURL(pic) {
+            if(pic.src === '') {
+                return;
+            }
+            return require(`../../assets/${pic.src}.jpg`);
         }
     }
 };
