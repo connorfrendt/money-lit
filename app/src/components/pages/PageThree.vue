@@ -1,50 +1,60 @@
 <template>
-    <div>
-        <!-- Need Box -->
-        <draggable
-            id="need-parent-box"
-            v-model="needsBox"
-            ghost-class="ghost"
-            group="needsAndWants"
-            @end="onEnd"
-        >
-            <transition-group id="need-box" type="transition" name="flip-list">
-                <div
-                    v-for="n in needsBox"
-                    :key="n"
-                    class="needs-items"
-                >
-                    <div>
-                        <div id="need-box-item">{{ n.name }}</div>
-                        <img :src="getImgURL(n)" style="height: 50px" />
-                    </div>
-                </div>
-            </transition-group>
-        </draggable>
-        <!-- END Need Box -->
+    <div> <!-- Main Div -->
 
-        <!-- Want Box -->
-        <draggable
-            id="want-parent-box"
-            v-model="wantsBox"
-            ghost-class="ghost"
-            group="needsAndWants"
-            @end="onEnd"
-        >
-            <transition-group id="want-box" type="transition" name="flip-list">
-                <div
-                    v-for="n in wantsBox"
-                    :key="n"
-                    class="wants-items"
-                >
-                    <div>
-                        <div id="want-box-item">{{ n.name }}</div>
-                        <img :src="getImgURL(n)" style="height: 50px" />
+        <div id="need-want-title-parent">
+            <div><u>NEEDS</u></div>
+            <div><u>WANTS</u></div>
+        </div>
+
+        <div id="need-want-parent-box">
+            
+            <!-- Need Box -->
+            <draggable
+                id="need-parent-box"
+                v-model="needsBox"
+                ghost-class="ghost"
+                group="needsAndWants"
+                @end="onEnd"
+            >
+                <transition-group id="need-box" type="transition" name="flip-list">
+                    <div
+                        v-for="n in needsBox"
+                        :key="n.id"
+                        class="needs-items"
+                    >
+                        <div>
+                            <div id="need-box-item">{{ n.name }}</div>
+                            <img :src="getImgURL(n)" style="height: 50px" />
+                        </div>
                     </div>
-                </div>
-            </transition-group>
-        </draggable>
-        <!-- END Want Box -->
+                </transition-group>
+            </draggable>
+            <!-- END Need Box -->
+
+            <!-- Want Box -->
+            <draggable
+                id="want-parent-box"
+                v-model="wantsBox"
+                ghost-class="ghost"
+                group="needsAndWants"
+                @end="onEnd"
+            >
+                <transition-group id="want-box" type="transition" name="flip-list">
+                    <div
+                        v-for="n in wantsBox"
+                        :key="n.id"
+                        class="wants-items"
+                    >
+                        <div>
+                            <div id="want-box-item">{{ n.name }}</div>
+                            <img :src="getImgURL(n)" style="height: 50px" />
+                        </div>
+                    </div>
+                </transition-group>
+            </draggable>
+            <!-- END Want Box -->
+
+        </div>
 
         <!-- Word Box -->
         <draggable
@@ -68,7 +78,9 @@
         </draggable>
         <!-- END Word Box -->
 
-    </div>
+        <button>Submit</button>
+
+    </div> <!-- END Main Div -->
 </template>
 
 <script>
@@ -101,50 +113,50 @@ export default {
                 { id:21, name: 'Gym Memberships', src: 'gym-membership' }
             ],
             needsBox: [
-                { id: 1, name: '', src: '' },
-                { id: 2, name: '', src: '' },
-                { id: 3, name: '', src: '' },
-                { id: 4, name: '', src: '' },
-                { id: 5, name: '', src: '' },
-                { id: 6, name: '', src: '' },
-                { id: 7, name: '', src: '' },
-                { id: 8, name: '', src: '' },
-                { id: 9, name: '', src: '' },
-                { id:10, name: '', src: '' },
-                { id:11, name: '', src: '' },
-                { id:12, name: '', src: '' },
-                { id:13, name: '', src: '' },
-                { id:14, name: '', src: '' },
-                { id:15, name: '', src: '' },
-                { id:16, name: '', src: '' },
-                { id:17, name: '', src: '' },
-                { id:18, name: '', src: '' },
-                { id:19, name: '', src: '' },
-                { id:20, name: '', src: '' },
-                { id:21, name: '', src: '' }
+                { id:22, name: '', src: '' },
+                { id:23, name: '', src: '' },
+                { id:24, name: '', src: '' },
+                { id:25, name: '', src: '' },
+                { id:26, name: '', src: '' },
+                { id:27, name: '', src: '' },
+                { id:28, name: '', src: '' },
+                { id:29, name: '', src: '' },
+                { id:30, name: '', src: '' },
+                { id:31, name: '', src: '' },
+                { id:32, name: '', src: '' },
+                { id:33, name: '', src: '' },
+                { id:34, name: '', src: '' },
+                { id:35, name: '', src: '' },
+                { id:36, name: '', src: '' },
+                { id:37, name: '', src: '' },
+                { id:38, name: '', src: '' },
+                { id:39, name: '', src: '' },
+                { id:40, name: '', src: '' },
+                { id:41, name: '', src: '' },
+                { id:42, name: '', src: '' }
             ],
             wantsBox: [
-                { id: 1, name: '', src: '' },
-                { id: 2, name: '', src: '' },
-                { id: 3, name: '', src: '' },
-                { id: 4, name: '', src: '' },
-                { id: 5, name: '', src: '' },
-                { id: 6, name: '', src: '' },
-                { id: 7, name: '', src: '' },
-                { id: 8, name: '', src: '' },
-                { id: 9, name: '', src: '' },
-                { id:10, name: '', src: '' },
-                { id:11, name: '', src: '' },
-                { id:12, name: '', src: '' },
-                { id:13, name: '', src: '' },
-                { id:14, name: '', src: '' },
-                { id:15, name: '', src: '' },
-                { id:16, name: '', src: '' },
-                { id:17, name: '', src: '' },
-                { id:18, name: '', src: '' },
-                { id:19, name: '', src: '' },
-                { id:20, name: '', src: '' },
-                { id:21, name: '', src: '' }
+                { id:43, name: '', src: '' },
+                { id:44, name: '', src: '' },
+                { id:45, name: '', src: '' },
+                { id:46, name: '', src: '' },
+                { id:47, name: '', src: '' },
+                { id:48, name: '', src: '' },
+                { id:49, name: '', src: '' },
+                { id:50, name: '', src: '' },
+                { id:51, name: '', src: '' },
+                { id:52, name: '', src: '' },
+                { id:53, name: '', src: '' },
+                { id:54, name: '', src: '' },
+                { id:55, name: '', src: '' },
+                { id:56, name: '', src: '' },
+                { id:57, name: '', src: '' },
+                { id:58, name: '', src: '' },
+                { id:59, name: '', src: '' },
+                { id:60, name: '', src: '' },
+                { id:61, name: '', src: '' },
+                { id:62, name: '', src: '' },
+                { id:63, name: '', src: '' }
             ],
             oldIndex: '',
             newIndex: ''
@@ -169,10 +181,20 @@ export default {
 </script>
 
 <style scoped>
+#need-want-title-parent{
+    display: flex;
+    justify-content: space-around;
+}
+#need-want-parent-box {
+    display: flex;
+    justify-content: space-around;
+}
+
 #need-parent-box {
     background-color: lightblue;
     padding: 10px;
     width: 50%;
+    margin: 10px;
 }
 #need-box {
     display: grid;
@@ -192,6 +214,7 @@ export default {
     background-color: lightgreen;
     padding: 10px;
     width: 50%;
+    margin: 10px;
 }
 #want-box {
     display: grid;
