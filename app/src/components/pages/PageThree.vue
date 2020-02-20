@@ -1,7 +1,7 @@
 <template>
     <div>
-            <!-- Need Box -->
-            <draggable
+        <!-- Need Box -->
+        <draggable
             id="need-parent-box"
             v-model="needsBox"
             ghost-class="ghost"
@@ -21,6 +21,30 @@
                 </div>
             </transition-group>
         </draggable>
+        <!-- END Need Box -->
+
+        <!-- Want Box -->
+        <draggable
+            id="want-parent-box"
+            v-model="wantsBox"
+            ghost-class="ghost"
+            group="needsAndWants"
+            @end="onEnd"
+        >
+            <transition-group id="want-box" type="transition" name="flip-list">
+                <div
+                    v-for="n in wantsBox"
+                    :key="n"
+                    class="wants-items"
+                >
+                    <div>
+                        <div id="want-box-item">{{ n.name }}</div>
+                        <img :src="getImgURL(n)" style="height: 50px" />
+                    </div>
+                </div>
+            </transition-group>
+        </draggable>
+        <!-- END Want Box -->
 
         <!-- Word Box -->
         <draggable
@@ -42,6 +66,8 @@
                 </div>
             </transition-group>
         </draggable>
+        <!-- END Word Box -->
+
     </div>
 </template>
 
@@ -97,6 +123,29 @@ export default {
                 { id:20, name: '', src: '' },
                 { id:21, name: '', src: '' }
             ],
+            wantsBox: [
+                { id: 1, name: '', src: '' },
+                { id: 2, name: '', src: '' },
+                { id: 3, name: '', src: '' },
+                { id: 4, name: '', src: '' },
+                { id: 5, name: '', src: '' },
+                { id: 6, name: '', src: '' },
+                { id: 7, name: '', src: '' },
+                { id: 8, name: '', src: '' },
+                { id: 9, name: '', src: '' },
+                { id:10, name: '', src: '' },
+                { id:11, name: '', src: '' },
+                { id:12, name: '', src: '' },
+                { id:13, name: '', src: '' },
+                { id:14, name: '', src: '' },
+                { id:15, name: '', src: '' },
+                { id:16, name: '', src: '' },
+                { id:17, name: '', src: '' },
+                { id:18, name: '', src: '' },
+                { id:19, name: '', src: '' },
+                { id:20, name: '', src: '' },
+                { id:21, name: '', src: '' }
+            ],
             oldIndex: '',
             newIndex: ''
         };
@@ -123,25 +172,39 @@ export default {
 #need-parent-box {
     background-color: lightblue;
     padding: 10px;
-    width: 97vw;
+    width: 50%;
 }
-
 #need-box {
     display: grid;
     grid-template: repeat(3, minmax(55px, 1fr)) / repeat(7, 1fr);
 }
-
 #need-box-item {
     height: 100%;
 }
-
 .needs-items {
-    /* border: 1px solid black; */
     text-align: center;
     position: relative;
     cursor: move;
 }
 
+
+#want-parent-box {
+    background-color: lightgreen;
+    padding: 10px;
+    width: 50%;
+}
+#want-box {
+    display: grid;
+    grid-template: repeat(3, minmax(55px, 1fr)) / repeat(7, 1fr);
+}
+#want-box-item {
+    height: 100%;
+}
+#wants-items {
+    text-align: center;
+    position: relative;
+    cursor: move;
+}
 
 
 #word-box {
