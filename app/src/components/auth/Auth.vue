@@ -80,7 +80,7 @@ export default {
             
             this.onSignIn(this.profile)
                 .then(() => {
-                    this.$router.push('/PageThree');
+                    this.$router.push('/NeedsWants');
                 })
                 .catch(error => {
                     console.log('ERROR', error);
