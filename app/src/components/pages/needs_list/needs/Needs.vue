@@ -5,18 +5,22 @@
             :key="n.id"
             class="needs-items"
         >
-            <div>
-                <div id="need-box-item">{{ n.name }}</div>
-                <img :src="getImgURL(n)" style="height: 50px" />
-            </div>
+            <Need />
         </div>
     </div>
 </template>
 
 <script>
-export default {
+import Need from './need/Need';
 
-}
+export default {
+    props: {
+        needsBox: Array
+    },
+    components: {
+        Need
+    }
+};
 </script>
 
 <style>

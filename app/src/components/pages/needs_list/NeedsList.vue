@@ -7,12 +7,14 @@
                 @end="onEnd"
     >
         <transition-group id="need-box" type="transition" name="flip-list">
-            
+            <Needs />
         </transition-group>
     </draggable>
 </template>
 
 <script>
+import Needs from './needs/Needs';
+
 export default {
     data() {
         return {
@@ -38,8 +40,11 @@ export default {
                 { id:40, name: '', src: '' },
                 { id:41, name: '', src: '' },
                 { id:42, name: '', src: '' }
-            ],
+            ]
         };
+    },
+    components: {
+        Needs
     }
 };
 </script>
