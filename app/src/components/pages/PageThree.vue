@@ -6,79 +6,83 @@
             <div><u>WANTS</u></div>
         </div>
 
-        <div id="need-want-parent-box">
-            
-            <!-- Need Box -->
-            <draggable
-                id="need-parent-box"
-                v-model="needsBox"
-                ghost-class="ghost"
-                group="needsAndWants"
-                @end="onEnd"
-            >
-                <transition-group id="need-box" type="transition" name="flip-list">
-                    <div
-                        v-for="n in needsBox"
-                        :key="n.id"
-                        class="needs-items"
-                    >
-                        <div>
-                            <div id="need-box-item">{{ n.name }}</div>
-                            <img :src="getImgURL(n)" style="height: 50px" />
-                        </div>
-                    </div>
-                </transition-group>
-            </draggable>
-            <!-- END Need Box -->
+        <form @click="myFunc">
 
-            <!-- Want Box -->
-            <draggable
-                id="want-parent-box"
-                v-model="wantsBox"
-                ghost-class="ghost"
-                group="needsAndWants"
-                @end="onEnd"
-            >
-                <transition-group id="want-box" type="transition" name="flip-list">
-                    <div
-                        v-for="n in wantsBox"
-                        :key="n.id"
-                        class="wants-items"
-                    >
-                        <div>
-                            <div id="want-box-item">{{ n.name }}</div>
-                            <img :src="getImgURL(n)" style="height: 50px" />
-                        </div>
-                    </div>
-                </transition-group>
-            </draggable>
-            <!-- END Want Box -->
-
-        </div>
-
-        <!-- Word Box -->
-        <draggable
-            v-model="wordBox"
-            ghost-class="ghost"
-            group="needsAndWants"
-            @end="onEnd"
-        >
-            <transition-group id="word-box" type="transition" name="flip-list">
-                <div
-                    v-for="item in wordBox"
-                    :key="item"
-                    class="items"
+            <div id="need-want-parent-box"> <!-- Need/Want/Word Box -->
+                
+                <!-- Need Box -->
+                <draggable
+                    id="need-parent-box"
+                    v-model="needsBox"
+                    ghost-class="ghost"
+                    group="needsAndWants"
+                    @end="onEnd"
                 >
-                    <div>
-                        <div id="word-box-item">{{ item.name }}</div>
-                        <img :src="getImgURL(item)" style="height: 50px" />
-                    </div>
-                </div>
-            </transition-group>
-        </draggable>
-        <!-- END Word Box -->
+                    <transition-group id="need-box" type="transition" name="flip-list">
+                        <div
+                            v-for="n in needsBox"
+                            :key="n.id"
+                            class="needs-items"
+                        >
+                            <div>
+                                <div id="need-box-item">{{ n.name }}</div>
+                                <img :src="getImgURL(n)" style="height: 50px" />
+                            </div>
+                        </div>
+                    </transition-group>
+                </draggable>
+                <!-- END Need Box -->
 
-        <button>Submit</button>
+                <!-- Want Box -->
+                <draggable
+                    id="want-parent-box"
+                    v-model="wantsBox"
+                    ghost-class="ghost"
+                    group="needsAndWants"
+                    @end="onEnd"
+                >
+                    <transition-group id="want-box" type="transition" name="flip-list">
+                        <div
+                            v-for="n in wantsBox"
+                            :key="n.id"
+                            class="wants-items"
+                        >
+                            <div>
+                                <div id="want-box-item">{{ n.name }}</div>
+                                <img :src="getImgURL(n)" style="height: 50px" />
+                            </div>
+                        </div>
+                    </transition-group>
+                </draggable>
+                <!-- END Want Box -->
+
+            </div> <!-- END Need/Want/Word Box -->
+
+            <!-- Word Box -->
+            <draggable
+                v-model="wordBox"
+                ghost-class="ghost"
+                group="needsAndWants"
+                @end="onEnd"
+            >
+                <transition-group id="word-box" type="transition" name="flip-list">
+                    <div
+                        v-for="item in wordBox"
+                        :key="item"
+                        class="items"
+                    >
+                        <div>
+                            <div id="word-box-item">{{ item.name }}</div>
+                            <img :src="getImgURL(item)" style="height: 50px" />
+                        </div>
+                    </div>
+                </transition-group>
+            </draggable>
+            <!-- END Word Box -->
+
+            <button @click="myFunc">Submit</button>
+        
+        </form>
 
     </div> <!-- END Main Div -->
 </template>
@@ -175,6 +179,9 @@ export default {
                 return;
             }
             return require(`../../assets/${pic.src}.jpg`);
+        },
+        myFunc() {
+            console.log('I have been clicked');
         }
     }
 };
