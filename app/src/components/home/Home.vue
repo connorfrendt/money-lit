@@ -13,7 +13,7 @@
         <div v-if="$route.path === '/'">
             <h2>MoneyLit:</h2>
             <p>Understanding the difference between <i>needs</i> and <i>wants</i> helps you be strategic about your spending.</p>
-            <button id="login"><RouterLink to="/Auth">TO LOG IN</RouterLink></button>
+            <button id="login"><RouterLink to="/Auth">LOG IN/SIGN UP</RouterLink></button>
         </div>
         
         <RouterView

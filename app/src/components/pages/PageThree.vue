@@ -68,7 +68,7 @@
                 <transition-group id="word-box" type="transition" name="flip-list">
                     <div
                         v-for="item in wordBox"
-                        :key="item"
+                        :key="item.id"
                         class="items"
                     >
                         <div>
@@ -181,7 +181,18 @@ export default {
             return require(`../../assets/${pic.src}.jpg`);
         },
         myFunc() {
-            console.log('I have been clicked');
+            let needItems = [];
+            
+            for(let i = 0; i < this.needsBox.length; i++) {
+                let needItem = {};
+                if(this.needsBox[i].name !== "") {
+                    needItem.Id = this.needsBox[i].id;
+                    needItem.Name = this.needsBox[i].name;
+                    needItems.push(needItem);
+                    // needItems.push(this.needsBox[i]);
+                }
+            }
+            console.log('NEED ITEM ARRAY', needItems);
         }
     }
 };
