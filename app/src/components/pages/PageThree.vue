@@ -72,7 +72,7 @@
                         class="items"
                     >
                         <div>
-                            <div id="word-box-item">{{ item.name }}</div>
+                            <div>{{ item.name }}</div>
                             <img :src="getImgURL(item)" style="height: 50px" />
                         </div>
                     </div>
@@ -80,7 +80,7 @@
             </draggable>
             <!-- END Word Box -->
 
-            <button @click="myFunc">Submit</button>
+            <button>Submit</button>
         
         </form>
 
@@ -116,52 +116,8 @@ export default {
                 { id:20, name: 'Travel', src: 'travel' },
                 { id:21, name: 'Gym Memberships', src: 'gym-membership' }
             ],
-            needsBox: [
-                { id:22, name: '', src: '' },
-                { id:23, name: '', src: '' },
-                { id:24, name: '', src: '' },
-                { id:25, name: '', src: '' },
-                { id:26, name: '', src: '' },
-                { id:27, name: '', src: '' },
-                { id:28, name: '', src: '' },
-                { id:29, name: '', src: '' },
-                { id:30, name: '', src: '' },
-                { id:31, name: '', src: '' },
-                { id:32, name: '', src: '' },
-                { id:33, name: '', src: '' },
-                { id:34, name: '', src: '' },
-                { id:35, name: '', src: '' },
-                { id:36, name: '', src: '' },
-                { id:37, name: '', src: '' },
-                { id:38, name: '', src: '' },
-                { id:39, name: '', src: '' },
-                { id:40, name: '', src: '' },
-                { id:41, name: '', src: '' },
-                { id:42, name: '', src: '' }
-            ],
-            wantsBox: [
-                { id:43, name: '', src: '' },
-                { id:44, name: '', src: '' },
-                { id:45, name: '', src: '' },
-                { id:46, name: '', src: '' },
-                { id:47, name: '', src: '' },
-                { id:48, name: '', src: '' },
-                { id:49, name: '', src: '' },
-                { id:50, name: '', src: '' },
-                { id:51, name: '', src: '' },
-                { id:52, name: '', src: '' },
-                { id:53, name: '', src: '' },
-                { id:54, name: '', src: '' },
-                { id:55, name: '', src: '' },
-                { id:56, name: '', src: '' },
-                { id:57, name: '', src: '' },
-                { id:58, name: '', src: '' },
-                { id:59, name: '', src: '' },
-                { id:60, name: '', src: '' },
-                { id:61, name: '', src: '' },
-                { id:62, name: '', src: '' },
-                { id:63, name: '', src: '' }
-            ],
+            needsBox: [],
+            wantsBox: [],
             oldIndex: '',
             newIndex: ''
         };
@@ -182,22 +138,24 @@ export default {
         },
         myFunc() {
             let needItems = [];
-            
+
             for(let i = 0; i < this.needsBox.length; i++) {
                 let needItem = {};
-                if(this.needsBox[i].name !== "") {
+                if(this.needsBox[i].name !== '') {
                     needItem.Id = this.needsBox[i].id;
                     needItem.Name = this.needsBox[i].name;
                     needItems.push(needItem);
                 }
             }
-            console.log('NEED ITEM ARRAY', needItems);
+            
+            localStorage.setItem('needItems', JSON.stringify(needItems));
         }
     }
 };
 </script>
 
 <style scoped>
+/* NEEDS/WANTS ITEMS */
 #need-want-title-parent{
     display: flex;
     justify-content: space-around;
@@ -207,6 +165,7 @@ export default {
     justify-content: space-around;
 }
 
+/* NEEDS ITEMS */
 #need-parent-box {
     background-color: lightblue;
     padding: 10px;
@@ -224,9 +183,12 @@ export default {
     text-align: center;
     position: relative;
     cursor: move;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
 }
 
-
+/* WANTS ITEMS */
 #want-parent-box {
     background-color: lightgreen;
     padding: 10px;
@@ -240,13 +202,16 @@ export default {
 #want-box-item {
     height: 100%;
 }
-#wants-items {
+.wants-items {
     text-align: center;
     position: relative;
     cursor: move;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
 }
 
-
+/* WORD BOX */
 #word-box {
     display: grid;
     grid-template: repeat(3, minmax(65px, 1fr)) / repeat(7, 1fr);
@@ -260,10 +225,7 @@ export default {
     cursor: move;
 }
 
-#word-box-item {
-    margin: 0 auto;
-}
-
+/* OTHER */
 .flip-list-move {
     transition: transform 0.5s;
 }
