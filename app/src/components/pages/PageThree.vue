@@ -189,7 +189,6 @@ export default {
                     needItem.Id = this.needsBox[i].id;
                     needItem.Name = this.needsBox[i].name;
                     needItems.push(needItem);
-                    // needItems.push(this.needsBox[i]);
                 }
             }
             console.log('NEED ITEM ARRAY', needItems);
