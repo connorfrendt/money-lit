@@ -138,6 +138,7 @@ export default {
         },
         myFunc() {
             let needItems = [];
+            let wantItems = [];
 
             for(let i = 0; i < this.needsBox.length; i++) {
                 let needItem = {};
@@ -147,8 +148,18 @@ export default {
                     needItems.push(needItem);
                 }
             }
+
+            for(let i = 0; i < this.wantsBox.length; i++) {
+                let wantItem = {};
+                if(this.wantsBox[i].name !== '') {
+                    wantItem.Id = this.wantsBox[i].id;
+                    wantItem.Name = this.wantsBox[i].name;
+                    wantItems.push(wantItem);
+                }
+            }
             
             localStorage.setItem('needItems', JSON.stringify(needItems));
+            localStorage.setItem('wantItems', JSON.stringify(wantItems));
         }
     }
 };
