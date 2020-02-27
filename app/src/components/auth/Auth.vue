@@ -89,14 +89,12 @@ export default {
 
         handleSignUpSubmit() {
             this.error = '';
-            console.log('asdffdsa');
+            
             this.onSignUp(this.profile)
                 .then(() => {
-                    console.log('sign up? please?');
                     this.$router.push('/PageThree');
                 })
                 .catch(error => {
-                    console.log('error', this.profile);
                     this.error = error.error;
                 });
         }

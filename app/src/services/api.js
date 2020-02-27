@@ -26,7 +26,7 @@ export default {
     signUp(profile) {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
-                console.log('here', typeof response, response);
+                
                 if(response.ok) {
                     return response.json();
                 }
