@@ -158,8 +158,8 @@ export default {
                 }
             }
             
-            localStorage.setItem('needItems', JSON.stringify(needItems));
-            localStorage.setItem('wantItems', JSON.stringify(wantItems));
+            window.localStorage.setItem('needItems', JSON.stringify(needItems));
+            window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
         }
     }
 };

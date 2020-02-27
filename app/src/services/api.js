@@ -26,6 +26,7 @@ export default {
     signUp(profile) {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
+                console.log('here', typeof response, response);
                 if(response.ok) {
                     return response.json();
                 }
@@ -52,13 +53,13 @@ export default {
             });
     },
 
-    normalize(username) {
-        let splitUsername = username.split('');
-        for(let i = 0; i < splitUsername.length; i++) {
-            if(i === 0) splitUsername[i] = splitUsername[i].toUpperCase();
-            else splitUsername[i] = splitUsername[i].toLowerCase();
-        }
+    // normalize(username) {
+    //     let splitUsername = username.split('');
+    //     for(let i = 0; i < splitUsername.length; i++) {
+    //         if(i === 0) splitUsername[i] = splitUsername[i].toUpperCase();
+    //         else splitUsername[i] = splitUsername[i].toLowerCase();
+    //     }
         
-        return splitUsername.join('');
-    }
+    //     return splitUsername.join('');
+    // }
 };

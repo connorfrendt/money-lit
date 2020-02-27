@@ -38,7 +38,7 @@
                         
                         <label>
                             Password:
-                            <input type="password" v-model="profile.password" required>
+                            <input v-model="profile.password" type="password" required>
                         </label>
                         
                         <label>
@@ -83,16 +83,20 @@ export default {
                     this.$router.push('/PageThree');
                 })
                 .catch(error => {
-                    console.log('ERROR', error);
                     this.error = error.error;
                 });
         },
 
         handleSignUpSubmit() {
             this.error = '';
-
+            console.log('asdffdsa');
             this.onSignUp(this.profile)
+                .then(() => {
+                    console.log('sign up? please?');
+                    this.$router.push('/PageThree');
+                })
                 .catch(error => {
+                    console.log('error', this.profile);
                     this.error = error.error;
                 });
         }
