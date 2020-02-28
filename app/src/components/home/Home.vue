@@ -2,7 +2,7 @@
     <div id="home">
         <header>
             <span v-if="user" id="header">
-                Welcome {{ user.username }}
+                Welcome {{ changeName(user.username) }}
                 <a href="#" class="nav" @click="handleLogout">Logout</a>
             </span>
         </header>
@@ -42,7 +42,6 @@ export default {
     },
     methods: {
         handleSignUp(profile) {
-            console.log('this is profile', profile);
             return api.signUp(profile)
                 .then(user => {
                     this.setUser(user);
@@ -65,9 +64,9 @@ export default {
                 window.localStorage.removeItem('profile');
             }
         },
-        // changeName(name) {
-        //     return api.normalize(name);
-        // },
+        changeName(name) {
+            return !name ? 'Guest' : api.normalize(name);
+        },
         handleLogout() {
             this.setUser(null);
             this.$router.push('/');

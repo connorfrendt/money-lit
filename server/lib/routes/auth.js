@@ -32,7 +32,7 @@ router
                      RETURNING Id, Username;
                 `,
                 [username, password])
-                    .then(results => {
+                    .then(result => {
                         res.json(result.rows[0]);
                     });
             });
