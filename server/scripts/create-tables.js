@@ -6,6 +6,18 @@ client.query(`
         Username VARCHAR(255) NOT NULL,
         Password VARCHAR(255) NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS needs (
+        Id SERIAL PRIMARY KEY,
+        Item_Id INTEGER,
+        NAME VARCHAR(255) NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS wants (
+        Id SERIAL PRIMARY KEY,
+        Item_Id INTEGER,
+        NAME VARCHAR(255) NOT NULL
+    );
 `)
     .then(
         () => console.log('Create Tables COMPLETE'),
