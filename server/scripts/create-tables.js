@@ -7,16 +7,11 @@ client.query(`
         Password VARCHAR(255) NOT NULL
     );
 
-    CREATE TABLE IF NOT EXISTS needs (
+    CREATE TABLE IF NOT EXISTS needs_wants (
         Id SERIAL PRIMARY KEY,
+        Profile_Id INTEGER NOT NULL REFERENCES profile(id),
         Item_Id INTEGER,
-        NAME VARCHAR(255) NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS wants (
-        Id SERIAL PRIMARY KEY,
-        Item_Id INTEGER,
-        NAME VARCHAR(255) NOT NULL
+        Name VARCHAR(255) NOT NULL
     );
 `)
     .then(

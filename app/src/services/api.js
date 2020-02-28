@@ -41,6 +41,11 @@ export default {
             });
     },
 
+    getNeedsWants() {
+        return fetch('/api/needsWants', getOptions('GET'))
+            .then(response => response.json());
+    },
+
     normalize(username) {
         let splitUsername = username.split('');
         for(let i = 0; i < splitUsername.length; i++) {

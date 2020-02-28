@@ -6,7 +6,7 @@
             <div><u>WANTS</u></div>
         </div>
 
-        <form @click="myFunc">
+        <form @click="submitNeedsWants">
 
             <div id="need-want-parent-box"> <!-- Need/Want/Word Box -->
                 
@@ -58,6 +58,8 @@
 
             </div> <!-- END Need/Want/Word Box -->
 
+            <button>Submit</button>
+
             <!-- Word Box -->
             <draggable
                 v-model="wordBox"
@@ -79,8 +81,6 @@
                 </transition-group>
             </draggable>
             <!-- END Word Box -->
-
-            <button>Submit</button>
         
         </form>
 
@@ -136,7 +136,7 @@ export default {
             }
             return require(`../../assets/${pic.src}.jpg`);
         },
-        myFunc() {
+        submitNeedsWants() {
             let needItems = [];
             let wantItems = [];
 
@@ -158,8 +158,11 @@ export default {
                 }
             }
             
-            window.localStorage.setItem('needItems', JSON.stringify(needItems));
-            window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
+
+
+            /* LOCAL STORAGE */
+            // window.localStorage.setItem('needItems', JSON.stringify(needItems));
+            // window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
         }
     }
 };
