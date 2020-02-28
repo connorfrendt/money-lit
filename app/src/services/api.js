@@ -26,12 +26,9 @@ export default {
     signUp(profile) {
         return fetch('/api/auth/signup', getOptions('POST', profile))
             .then(response => {
-                if(response.ok) return response.json();
-                
-                return response.json()
-                    .then(error => {
-                        return Promise.reject(error);
-                    });
+                return response.ok ? response.json()
+                    : response.json()
+                        .then(error => Promise.reject(error));
             });
     },
 
