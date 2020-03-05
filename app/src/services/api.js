@@ -46,6 +46,11 @@ export default {
             .then(response => response.json());
     },
 
+    addNeedsWants(needWant) {
+        return fetch('/api/needsWants', getOptions('POST', needWant))
+            .then(response => response.json());
+    },
+
     normalize(username) {
         let splitUsername = username.split('');
         for(let i = 0; i < splitUsername.length; i++) {

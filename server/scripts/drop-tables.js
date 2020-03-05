@@ -2,7 +2,7 @@ const client = require('../lib/db-client');
 
 client.query(`
     DROP TABLE IF EXISTS needs_wants;
-    DROP TABLE IF EXISTS profile;
+    DROP TABLE IF EXISTS profile CASCADE;
 `)
     .then(
         () => console.log('Drop Tables COMPLETE'),

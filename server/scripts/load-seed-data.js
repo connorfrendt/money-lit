@@ -7,7 +7,7 @@ client.query(`
 `,
 ['admin', 'password'])
     .then(result => {
-        const profile = result.rows[0];
+        const profile = result.rows[0]; // { id: 1 }
     })
     .then(
         () => console.log('Seed Data Load COMPLETE'),

@@ -89,6 +89,7 @@
 
 <script>
 import draggable from 'vuedraggable';
+import api from '../../services/api';
 
 export default {
     data() {
@@ -157,12 +158,13 @@ export default {
                     wantItems.push(wantItem);
                 }
             }
-            
-
-
             /* LOCAL STORAGE */
-            // window.localStorage.setItem('needItems', JSON.stringify(needItems));
-            // window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
+            window.localStorage.setItem('needItems', JSON.stringify(needItems));
+            window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
+            return api.addNeedsWants(this.needsBox)
+                .then(saved => {
+                    console.log('THIS IS SAVED', saved);
+                });
         }
     }
 };
