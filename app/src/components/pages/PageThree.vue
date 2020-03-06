@@ -6,7 +6,7 @@
             <div><u>WANTS</u></div>
         </div>
 
-        <form @click="submitNeedsWants">
+        <form @submit.prevent="submitNeedsWants">
 
             <div id="need-want-parent-box"> <!-- Need/Want/Word Box -->
                 
@@ -137,7 +137,7 @@ export default {
             }
             return require(`../../assets/${pic.src}.jpg`);
         },
-        submitNeedsWants() {
+        submitNeedsWants(needWant) {
             let needItems = [];
             let wantItems = [];
 
@@ -161,9 +161,9 @@ export default {
             /* LOCAL STORAGE */
             window.localStorage.setItem('needItems', JSON.stringify(needItems));
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
-            return api.addNeedsWants(this.needsBox)
+            return api.addNeedsWants(needWant)
                 .then(saved => {
-                    console.log('THIS IS SAVED', saved);
+                    console.log(saved);
                 });
         }
     }
@@ -187,6 +187,7 @@ export default {
     padding: 10px;
     width: 50%;
     margin: 10px;
+    overflow: scroll;
 }
 #need-box {
     display: grid;
@@ -210,6 +211,7 @@ export default {
     padding: 10px;
     width: 50%;
     margin: 10px;
+    overflow: scroll;
 }
 #want-box {
     display: grid;

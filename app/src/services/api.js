@@ -48,7 +48,10 @@ export default {
 
     addNeedsWants(needWant) {
         return fetch('/api/needsWants', getOptions('POST', needWant))
-            .then(response => response.json());
+            .then(response => {
+                console.log('RESPONSE HERE', response);
+                return response.json();
+            });
     },
 
     normalize(username) {
