@@ -19,6 +19,6 @@ const checkAuth = (req, res, next) => {
 }
 
 app.use('/api/auth', auth);
-app.use('/api/needsWants', checkAuth, auth);
+app.use('/api/needsWants', checkAuth, needsWants);
 
 module.exports = app;

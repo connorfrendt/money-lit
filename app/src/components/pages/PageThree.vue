@@ -163,7 +163,7 @@ export default {
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
             return api.addNeedsWants(needWant)
                 .then(saved => {
-                    console.log(saved);
+                    console.log('THIS IS SAVED', saved);
                 });
         }
     }

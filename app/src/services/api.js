@@ -51,6 +51,9 @@ export default {
             .then(response => {
                 console.log('RESPONSE HERE', response);
                 return response.json();
+            })
+            .catch(error => {
+                console.error(error);
             });
     },
 
