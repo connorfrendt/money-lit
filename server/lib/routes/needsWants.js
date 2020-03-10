@@ -19,17 +19,17 @@ router
     .post('/', (req, res) => {
         const body = req.body;
         console.log('THIS IS THE BODY', body);
-        return true;
-        // client.query(`
-        //     INSERT INTO needs_wants (Profile_Id, Item_Id, Name)
-        //     VALUES ($1, $2, $3)
-        //     RETURNING Id, Item_Id, Name;
-        // `,
-        // [req.userId, body.Item_Id, body.Name])
-        //     .then(result => {
-        //         console.log('*************////////', result);
+        
+        client.query(`
+            INSERT INTO needs_wants (Profile_Id, Item_Id, Name)
+            VALUES ($1, $2, $3)
+            RETURNING Id, Item_Id, Name;
+        `,
+        [req.userId, body.Item_Id, body.Name])
+            .then(result => {
+                console.log('*************////////', result);
                 
-        //     });
+            });
     })
 
 module.exports = router;
