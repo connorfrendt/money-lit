@@ -91,6 +91,12 @@
 import draggable from 'vuedraggable';
 import api from '../../services/api';
 
+function initNeedWant() {
+    return {
+        name: ''
+    };
+}
+
 export default {
     data() {
         return {
@@ -120,7 +126,8 @@ export default {
             needsBox: [],
             wantsBox: [],
             oldIndex: '',
-            newIndex: ''
+            newIndex: '',
+            needWant: initNeedWant()
         };
     },
     components: {
@@ -137,7 +144,7 @@ export default {
             }
             return require(`../../assets/${pic.src}.jpg`);
         },
-        submitNeedsWants() {
+        submitNeedsWants(needWant) {
             let needItems = [];
             let wantItems = [];
 
@@ -161,9 +168,10 @@ export default {
             /* LOCAL STORAGE */
             window.localStorage.setItem('needItems', JSON.stringify(needItems));
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
-            let myItem = window.localStorage.getItem('needItems');
 
-            return api.addNeedsWants(myItem)
+
+
+            return api.addNeedsWants(needWant)
                 .then(saved => {
                     console.log('SUCCESS', saved);
                 });
