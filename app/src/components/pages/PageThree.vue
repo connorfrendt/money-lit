@@ -138,6 +138,7 @@ export default {
             return require(`../../assets/${pic.src}.jpg`);
         },
         submitNeedsWants(needWant) {
+            console.log(needWant, '<-- NEED WANT');
             let needItems = [];
             let wantItems = [];
 
