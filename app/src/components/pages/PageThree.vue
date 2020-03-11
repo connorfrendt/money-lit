@@ -162,6 +162,7 @@ export default {
             /* LOCAL STORAGE */
             window.localStorage.setItem('needItems', JSON.stringify(needItems));
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
+            console.log(needWant);
             return api.addNeedsWants(needWant)
                 .then(saved => {
                     console.log('THIS IS SAVED', saved);
