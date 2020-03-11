@@ -137,8 +137,7 @@ export default {
             }
             return require(`../../assets/${pic.src}.jpg`);
         },
-        submitNeedsWants(needWant) {
-            console.log(needWant, '<-- NEED WANT');
+        submitNeedsWants() {
             let needItems = [];
             let wantItems = [];
 
@@ -162,10 +161,11 @@ export default {
             /* LOCAL STORAGE */
             window.localStorage.setItem('needItems', JSON.stringify(needItems));
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
-            console.log(needWant);
-            return api.addNeedsWants(needWant)
+            let myItem = window.localStorage.getItem('needItems');
+
+            return api.addNeedsWants(myItem)
                 .then(saved => {
-                    console.log('THIS IS SAVED', saved);
+                    console.log('SUCCESS', saved);
                 });
         }
     }

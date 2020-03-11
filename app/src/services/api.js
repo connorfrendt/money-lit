@@ -48,9 +48,9 @@ export default {
 
     addNeedsWants(needWant) {
         return fetch('/api/needsWants', getOptions('POST', needWant))
-            .then(response => {
-                console.log('RESPONSE HERE', response);
-                return response.json();
+            .then(needWant => {
+                console.log('RESPONSE HERE', needWant);
+                return needWant;
             })
             .catch(error => {
                 console.error(error);
