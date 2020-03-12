@@ -6,8 +6,6 @@
             <div><u>WANTS</u></div>
         </div>
 
-        <form @submit.prevent="submitNeedsWants">
-
             <div id="need-want-parent-box"> <!-- Need/Want/Word Box -->
                 
                 <!-- Need Box -->
@@ -58,7 +56,7 @@
 
             </div> <!-- END Need/Want/Word Box -->
 
-            <button>Submit</button>
+            <AddNeedWant :onAdd="handleAdd" />
 
             <!-- Word Box -->
             <draggable
@@ -82,14 +80,13 @@
             </draggable>
             <!-- END Word Box -->
         
-        </form>
-
     </div> <!-- END Main Div -->
 </template>
 
 <script>
 import draggable from 'vuedraggable';
 import api from '../../services/api';
+import AddNeedWant from './AddNeedWant';
 
 function initNeedWant() {
     return {
@@ -131,7 +128,8 @@ export default {
         };
     },
     components: {
-        draggable
+        draggable,
+        AddNeedWant
     },
     methods: {
         onEnd(event) {
@@ -144,7 +142,7 @@ export default {
             }
             return require(`../../assets/${pic.src}.jpg`);
         },
-        submitNeedsWants(needWant) {
+        handleAdd(needWant) {
             let needItems = [];
             let wantItems = [];
 
@@ -168,8 +166,6 @@ export default {
             /* LOCAL STORAGE */
             window.localStorage.setItem('needItems', JSON.stringify(needItems));
             window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
-
-
 
             return api.addNeedsWants(needWant)
                 .then(saved => {
