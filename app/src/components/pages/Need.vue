@@ -1,14 +1,16 @@
 <template>
     <div>
-        <div id="need-box-item">{{ n.name }}</div>
-        <img :src="getImgURL(n)" style="height: 50px" />
+        <div id="need-box-item">{{ need.name }}</div>
+        <img :src="getImgURL(need)" style="height: 50px" />
     </div>
 </template>
 
 <script>
 export default {
-
-}
+    props: {
+        need: null
+    }
+};
 </script>
 
 <style>

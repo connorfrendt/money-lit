@@ -17,7 +17,11 @@
                     @end="onEnd"
                 >
                     <transition-group id="need-box" type="transition" name="flip-list">
-                        <div
+                        <NeedList
+                            :needsBox="needsBox"
+                            :key="needsBox"
+                        />
+                        <!-- <div
                             v-for="n in needsBox"
                             :key="n.id"
                             class="needs-items"
@@ -26,7 +30,7 @@
                                 <div id="need-box-item">{{ n.name }}</div>
                                 <img :src="getImgURL(n)" style="height: 50px" />
                             </div>
-                        </div>
+                        </div> -->
                     </transition-group>
                 </draggable>
                 <!-- END Need Box -->
@@ -87,12 +91,7 @@
 import draggable from 'vuedraggable';
 import api from '../../services/api';
 import AddNeedWant from './AddNeedWant';
-
-function initNeedWant() {
-    return {
-        name: ''
-    };
-}
+import NeedList from './NeedList';
 
 export default {
     data() {
@@ -123,13 +122,13 @@ export default {
             needsBox: [],
             wantsBox: [],
             oldIndex: '',
-            newIndex: '',
-            needWant: initNeedWant()
+            newIndex: ''
         };
     },
     components: {
         draggable,
-        AddNeedWant
+        AddNeedWant,
+        NeedList
     },
     methods: {
         onEnd(event) {
@@ -164,8 +163,8 @@ export default {
                 }
             }
             /* LOCAL STORAGE */
-            window.localStorage.setItem('needItems', JSON.stringify(needItems));
-            window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
+            // window.localStorage.setItem('needItems', JSON.stringify(needItems));
+            // window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
 
             return api.addNeedsWants(needWant)
                 .then(saved => {
@@ -187,6 +186,7 @@ export default {
     justify-content: space-around;
 }
 
+
 /* NEEDS ITEMS */
 #need-parent-box {
     background-color: lightblue;
@@ -202,14 +202,7 @@ export default {
 #need-box-item {
     height: 100%;
 }
-.needs-items {
-    text-align: center;
-    position: relative;
-    cursor: move;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-}
+
 
 /* WANTS ITEMS */
 #want-parent-box {
@@ -235,6 +228,7 @@ export default {
     padding: 5px;
 }
 
+
 /* WORD BOX */
 #word-box {
     display: grid;
@@ -248,6 +242,7 @@ export default {
     position: relative;
     cursor: move;
 }
+
 
 /* OTHER */
 .flip-list-move {
