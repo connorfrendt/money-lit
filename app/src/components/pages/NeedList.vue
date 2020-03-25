@@ -12,7 +12,8 @@ import Need from './Need';
 
 export default {
     props: {
-        needsBox: null
+        needsBox: null,
+        need: null
     },
     components: {
         Need
