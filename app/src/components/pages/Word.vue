@@ -7,8 +7,18 @@
 
 <script>
 export default {
-
-}
+    props: {
+        item: null
+    },
+    methods: {
+        getImgURL(pic) {
+            if(pic.src === '') {
+                return;
+            }
+            return require(`../../assets/${pic.src}.jpg`);
+        },
+    }
+};
 </script>
 
 <style>

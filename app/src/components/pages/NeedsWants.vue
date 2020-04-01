@@ -17,20 +17,13 @@
                     @end="onEnd"
                 >
                     <transition-group id="need-box" type="transition" name="flip-list">
-                        <NeedList
-                            :needsBox="needsBox"
-                            :key="needsBox"
-                        />
-                        <!-- <div
-                            v-for="n in needsBox"
-                            :key="n.id"
+                        <div
+                            v-for="need in needsBox"
+                            :key="need.id"
                             class="needs-items"
                         >
-                            <div>
-                                <div id="need-box-item">{{ n.name }}</div>
-                                <img :src="getImgURL(n)" style="height: 50px" />
-                            </div>
-                        </div> -->
+                            <Need :need="need" />
+                        </div>
                     </transition-group>
                 </draggable>
                 <!-- END Need Box -->
@@ -45,14 +38,11 @@
                 >
                     <transition-group id="want-box" type="transition" name="flip-list">
                         <div
-                            v-for="n in wantsBox"
-                            :key="n.id"
+                            v-for="want in wantsBox"
+                            :key="want.id"
                             class="wants-items"
                         >
-                            <div>
-                                <div id="want-box-item">{{ n.name }}</div>
-                                <img :src="getImgURL(n)" style="height: 50px" />
-                            </div>
+                            <Want :want="want" />
                         </div>
                     </transition-group>
                 </draggable>
@@ -75,10 +65,7 @@
                         :key="item.id"
                         class="items"
                     >
-                        <div>
-                            <div>{{ item.name }}</div>
-                            <img :src="getImgURL(item)" style="height: 50px" />
-                        </div>
+                        <Word :item="item" />
                     </div>
                 </transition-group>
             </draggable>
@@ -91,7 +78,9 @@
 import draggable from 'vuedraggable';
 import api from '../../services/api';
 import AddNeedWant from './AddNeedWant';
-import NeedList from './NeedList';
+import Need from './Need';
+import Want from './Want';
+import Word from './Word';
 
 export default {
     data() {
@@ -128,19 +117,16 @@ export default {
     components: {
         draggable,
         AddNeedWant,
-        NeedList
+        Need,
+        Want,
+        Word
     },
     methods: {
         onEnd(event) {
             this.oldIndex = event.oldIndex;
             this.newIndex = event.newIndex;
         },
-        getImgURL(pic) {
-            if(pic.src === '') {
-                return;
-            }
-            return require(`../../assets/${pic.src}.jpg`);
-        },
+        
         handleAdd(needWant) {
             let needItems = [];
             let wantItems = [];

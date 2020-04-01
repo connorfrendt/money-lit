@@ -9,6 +9,14 @@
 export default {
     props: {
         need: null
+    },
+    methods: {
+        getImgURL(pic) {
+            if(pic.src === '') {
+                return;
+            }
+            return require(`../../assets/${pic.src}.jpg`);
+        },
     }
 };
 </script>
