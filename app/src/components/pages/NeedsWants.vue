@@ -14,7 +14,6 @@
                     v-model="needsBox"
                     ghost-class="ghost"
                     group="needsAndWants"
-                    @end="onEnd"
                 >
                     <transition-group id="need-box" type="transition" name="flip-list">
                         <div
@@ -34,7 +33,6 @@
                     v-model="wantsBox"
                     ghost-class="ghost"
                     group="needsAndWants"
-                    @end="onEnd"
                 >
                     <transition-group id="want-box" type="transition" name="flip-list">
                         <div
@@ -53,22 +51,10 @@
             <AddNeedWant :onAdd="handleAdd" />
 
             <!-- Word Box -->
-            <draggable
+            <WordBoxList
                 v-model="wordBox"
-                ghost-class="ghost"
-                group="needsAndWants"
-                @end="onEnd"
-            >
-                <transition-group id="word-box" type="transition" name="flip-list">
-                    <div
-                        v-for="item in wordBox"
-                        :key="item.id"
-                        class="items"
-                    >
-                        <Word :item="item" />
-                    </div>
-                </transition-group>
-            </draggable>
+                :wordBox="wordBox"
+            />
             <!-- END Word Box -->
         
     </div> <!-- END Main Div -->
@@ -80,7 +66,8 @@ import api from '../../services/api';
 import AddNeedWant from './AddNeedWant';
 import Need from './Need';
 import Want from './Want';
-import Word from './Word';
+import WordBoxList from './WordBoxList';
+// import Word from './Word';
 
 export default {
     data() {
@@ -119,14 +106,10 @@ export default {
         AddNeedWant,
         Need,
         Want,
-        Word
+        WordBoxList
+        // Word
     },
     methods: {
-        onEnd(event) {
-            this.oldIndex = event.oldIndex;
-            this.newIndex = event.newIndex;
-        },
-        
         handleAdd(needWant) {
             let needItems = [];
             let wantItems = [];
