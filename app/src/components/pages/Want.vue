@@ -8,7 +8,10 @@
 <script>
 export default {
     props: {
-        want: null
+        want: {
+            type: Object,
+            required: false
+        }
     },
     methods: {
         getImgURL(pic) {

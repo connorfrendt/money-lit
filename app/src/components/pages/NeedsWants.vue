@@ -11,50 +11,46 @@
                 <!-- Need Box -->
                 <draggable
                     id="need-parent-box"
-                    v-model="needsBox"
                     ghost-class="ghost"
                     group="needsAndWants"
+                    @end="onEnd"
                 >
-                    <transition-group id="need-box" type="transition" name="flip-list">
-                        <div
-                            v-for="need in needsBox"
-                            :key="need.id"
-                            class="needs-items"
-                        >
-                            <Need :need="need" />
-                        </div>
-                    </transition-group>
+                    <NeedList
+                        v-model="needsBox"
+                        :needsBox="needsBox"
+                    />
                 </draggable>
                 <!-- END Need Box -->
 
                 <!-- Want Box -->
                 <draggable
                     id="want-parent-box"
-                    v-model="wantsBox"
                     ghost-class="ghost"
                     group="needsAndWants"
+                    @end="onEnd"
                 >
-                    <transition-group id="want-box" type="transition" name="flip-list">
-                        <div
-                            v-for="want in wantsBox"
-                            :key="want.id"
-                            class="wants-items"
-                        >
-                            <Want :want="want" />
-                        </div>
-                    </transition-group>
+                    <WantList
+                        v-model="wantsBox"
+                        :wantsBox="wantsBox"
+                    />
                 </draggable>
-                <!-- END Want Box -->
+                <!-- END Need Box -->
 
             </div> <!-- END Need/Want/Word Box -->
 
-            <AddNeedWant :onAdd="handleAdd" />
+            <!-- <AddNeedWant :onAdd="handleAdd" /> -->
 
             <!-- Word Box -->
-            <WordBoxList
-                v-model="wordBox"
-                :wordBox="wordBox"
-            />
+            <draggable
+                ghost-class="ghost"
+                group="needsAndWants"
+                @end="onEnd"
+            >
+                <WordBoxList
+                    v-model="wordBox"
+                    :wordBox="wordBox"
+                />
+            </draggable>
             <!-- END Word Box -->
         
     </div> <!-- END Main Div -->
@@ -63,11 +59,10 @@
 <script>
 import draggable from 'vuedraggable';
 import api from '../../services/api';
-import AddNeedWant from './AddNeedWant';
-import Need from './Need';
-import Want from './Want';
+// import AddNeedWant from './AddNeedWant';
+import NeedList from './NeedList';
+import WantList from './WantList';
 import WordBoxList from './WordBoxList';
-// import Word from './Word';
 
 export default {
     data() {
@@ -102,14 +97,17 @@ export default {
         };
     },
     components: {
+        // AddNeedWant,
         draggable,
-        AddNeedWant,
-        Need,
-        Want,
+        NeedList,
+        WantList,
         WordBoxList
-        // Word
     },
     methods: {
+        onEnd(event) {
+            this.oldIndex = event.oldIndex;
+            this.newIndex = event.newIndex;
+        },
         handleAdd(needWant) {
             let needItems = [];
             let wantItems = [];
@@ -188,14 +186,7 @@ export default {
 #want-box-item {
     height: 100%;
 }
-.wants-items {
-    text-align: center;
-    position: relative;
-    cursor: move;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-}
+
 
 
 /* WORD BOX */
@@ -214,11 +205,5 @@ export default {
 
 
 /* OTHER */
-.flip-list-move {
-    transition: transform 0.5s;
-}
 
-.ghost {
-    background-color: lightgrey;
-}
 </style>
