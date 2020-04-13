@@ -6,11 +6,11 @@
             <div><u>WANTS</u></div>
         </div>
 
-            <div id="need-want-parent-box"> <!-- Need/Want/Word Box -->
+            <div id="need-want-box-parent"> <!-- Need/Want Box -->
                 
                 <!-- Need Box -->
                 <draggable
-                    id="need-parent-box"
+                    id="need-drag"
                     ghost-class="ghost"
                     group="needsAndWants"
                     @end="onEnd"
@@ -24,7 +24,7 @@
 
                 <!-- Want Box -->
                 <draggable
-                    id="want-parent-box"
+                id="want-drag"
                     ghost-class="ghost"
                     group="needsAndWants"
                     @end="onEnd"
@@ -36,7 +36,7 @@
                 </draggable>
                 <!-- END Need Box -->
 
-            </div> <!-- END Need/Want/Word Box -->
+            </div> <!-- END Need/Want Box -->
 
             <!-- <AddNeedWant :onAdd="handleAdd" /> -->
 
@@ -148,62 +148,23 @@ export default {
     display: flex;
     justify-content: space-around;
 }
-#need-want-parent-box {
+
+#need-want-box-parent {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-
-/* NEEDS ITEMS */
-#need-parent-box {
-    background-color: lightblue;
-    padding: 10px;
-    width: 50%;
-    margin: 10px;
-    overflow: scroll;
-}
-#need-box {
-    display: grid;
-    grid-template: repeat(3, minmax(55px, 1fr)) / repeat(7, 1fr);
-}
-#need-box-item {
-    height: 100%;
-}
-
-
-/* WANTS ITEMS */
-#want-parent-box {
-    background-color: lightgreen;
-    padding: 10px;
-    width: 50%;
-    margin: 10px;
-    overflow: scroll;
-}
-#want-box {
-    display: grid;
-    grid-template: repeat(3, minmax(55px, 1fr)) / repeat(7, 1fr);
-}
-#want-box-item {
-    height: 100%;
-}
-
-
-
-/* WORD BOX */
-#word-box {
-    display: grid;
-    grid-template: repeat(3, minmax(65px, 1fr)) / repeat(7, 1fr);
-}
-
-.items {
+#need-drag {
+    background: lightblue;
     border: 1px solid black;
-    margin: 5px;
-    text-align: center;
-    position: relative;
-    cursor: move;
+    height: 100%;
+    width: 100%;
 }
 
-
-/* OTHER */
-
+#want-drag {
+    background: lightgreen;
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+}
 </style>
