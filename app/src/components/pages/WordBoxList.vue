@@ -1,9 +1,8 @@
 <template>
-    <draggable group="needsAndWants">
+    <draggable id="words-grid" group="needsAndWants">
             <div
                 v-for="item in wordBox"
                 :key="item.id"
-                class="items"
             >
                 <Word :item="item" />
             </div>

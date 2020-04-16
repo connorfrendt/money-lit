@@ -10,26 +10,27 @@
                 
                 <!-- Need Box -->
                 <draggable
-                    id="need-drag"
-                    ghost-class="ghost"
                     group="needsAndWants"
-                    @end="onEnd"
                 >
                     <NeedList
+                        id="need-drag"
+                        ghost-class="ghost"
                         v-model="needsBox"
                         :needsBox="needsBox"
+                        @end="onEnd"
                     />
                 </draggable>
                 <!-- END Need Box -->
 
                 <!-- Want Box -->
                 <draggable
-                id="want-drag"
+                    id="want-drag"
                     ghost-class="ghost"
                     group="needsAndWants"
                     @end="onEnd"
                 >
                     <WantList
+                        id="want-grid"
                         v-model="wantsBox"
                         :wantsBox="wantsBox"
                     />
@@ -37,6 +38,8 @@
                 <!-- END Need Box -->
 
             </div> <!-- END Need/Want Box -->
+
+            <button @click="handleAdd">BUTTON</button>
 
             <!-- <AddNeedWant :onAdd="handleAdd" /> -->
 
@@ -47,6 +50,7 @@
                 @end="onEnd"
             >
                 <WordBoxList
+                    id="word-grid"
                     v-model="wordBox"
                     :wordBox="wordBox"
                 />
@@ -58,7 +62,7 @@
 
 <script>
 import draggable from 'vuedraggable';
-import api from '../../services/api';
+// import api from '../../services/api';
 // import AddNeedWant from './AddNeedWant';
 import NeedList from './NeedList';
 import WantList from './WantList';
@@ -78,7 +82,7 @@ export default {
                 { id: 8, name: 'Emergency Savings', src: 'emergency-savings' },
                 { id: 9, name: 'Insurance', src: 'insurance' },
                 { id:10, name: 'Games', src: 'games' },
-                { id:11, name: 'Coffehouse Drinks', src: 'coffee' },
+                { id:11, name: 'Coffeehouse Drinks', src: 'coffee' },
                 { id:12, name: 'Eating Out', src: 'out-to-eat' },
                 { id:13, name: 'Smartphone', src: 'smartphone' },
                 { id:14, name: 'Brand Name/Designer Clothing', src: 'designer-clothing' },
@@ -90,7 +94,7 @@ export default {
                 { id:20, name: 'Travel', src: 'travel' },
                 { id:21, name: 'Gym Memberships', src: 'gym-membership' }
             ],
-            needsBox: [],
+            needsBox: [{ id:1, name:'asdf', src:'' }],
             wantsBox: [],
             oldIndex: '',
             newIndex: ''
@@ -108,9 +112,9 @@ export default {
             this.oldIndex = event.oldIndex;
             this.newIndex = event.newIndex;
         },
-        handleAdd(needWant) {
+        handleAdd() {
             let needItems = [];
-            let wantItems = [];
+            // let wantItems = [];
 
             for(let i = 0; i < this.needsBox.length; i++) {
                 let needItem = {};
@@ -120,23 +124,24 @@ export default {
                     needItems.push(needItem);
                 }
             }
+            console.log(needItems, this.needsBox);
 
-            for(let i = 0; i < this.wantsBox.length; i++) {
-                let wantItem = {};
-                if(this.wantsBox[i].name !== '') {
-                    wantItem.Id = this.wantsBox[i].id;
-                    wantItem.Name = this.wantsBox[i].name;
-                    wantItems.push(wantItem);
-                }
-            }
+            // for(let i = 0; i < this.wantsBox.length; i++) {
+            //     let wantItem = {};
+            //     if(this.wantsBox[i].name !== '') {
+            //         wantItem.Id = this.wantsBox[i].id;
+            //         wantItem.Name = this.wantsBox[i].name;
+            //         wantItems.push(wantItem);
+            //     }
+            // }
             /* LOCAL STORAGE */
             // window.localStorage.setItem('needItems', JSON.stringify(needItems));
             // window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
 
-            return api.addNeedsWants(needWant)
-                .then(saved => {
-                    console.log('SUCCESS', saved);
-                });
+            // return api.addNeedsWants(needWant)
+            //     .then(saved => {
+            //         console.log('SUCCESS', saved);
+            //     });
         }
     }
 };
@@ -152,9 +157,12 @@ export default {
 #need-want-box-parent {
     display: flex;
     justify-content: center;
+    height: 150px;
 }
 
 #need-drag {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(5, 1fr);
     background: lightblue;
     border: 1px solid black;
     height: 100%;
@@ -166,5 +174,15 @@ export default {
     border: 1px solid black;
     height: 100%;
     width: 100%;
+}
+
+#want-grid {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(5, 1fr);
+}
+
+#word-grid {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(7, 1fr);
 }
 </style>

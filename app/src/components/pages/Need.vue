@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="need-box-item">{{ need.name }}</div>
+        <div>{{ need.name }}</div>
         <img :src="getImgURL(need)" style="height: 50px" />
     </div>
 </template>
@@ -8,10 +8,7 @@
 <script>
 export default {
     props: {
-        need: {
-            type: Object,
-            required: false
-        }
+        need: null
     },
     methods: {
         getImgURL(pic) {

@@ -1,12 +1,12 @@
 <template>
     <draggable group="needsAndWants">
-            <div
-                v-for="need in needsBox"
-                :key="need.id"
-                class="needs-items"
-            >
-                <Need :need="need" />
-            </div>
+        <div
+            v-for="need in needsBox"
+            :key="need.id"
+            class="needs-items"
+        >
+            <Need :need="need" />
+        </div>
     </draggable>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     props: {
         needsBox: {
             type: Array,
-            required: true
+            required: false
         },
         need: {
             type: Object,
@@ -40,19 +40,11 @@ export default {
 
 <style>
 .needs-items {
-    text-align: center;
-    position: relative;
-    cursor: move;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
+    background: red;
+    margin: 10px;
 }
 
 .ghost {
     background-color: lightgrey;
-}
-
-.flip-list-move {
-    transition: transform 0.5s;
 }
 </style>
