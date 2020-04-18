@@ -5,6 +5,7 @@
             :key="need.id"
             class="needs-items"
         >
+            <div>HERE I AM</div>
             <Need :need="need" />
         </div>
     </draggable>

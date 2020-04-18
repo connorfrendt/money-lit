@@ -1,28 +1,28 @@
 <template>
-    <div> <!-- Main Div -->
+    <div> <!-- MAIN DIV -->
 
         <div id="need-want-title-parent">
             <div><u>NEEDS</u></div>
             <div><u>WANTS</u></div>
         </div>
 
-            <div id="need-want-box-parent"> <!-- Need/Want Box -->
+            <div id="need-want-box-parent"> <!-- NEED/WANT BOX -->
                 
-                <!-- Need Box -->
+                <!-- NEED BOX -->
                 <draggable
+                    id="need-drag"
                     group="needsAndWants"
+                    v-model="needsBox"
                 >
-                    <NeedList
-                        id="need-drag"
-                        ghost-class="ghost"
-                        v-model="needsBox"
-                        :needsBox="needsBox"
-                        @end="onEnd"
-                    />
+                        <NeedList
+                            ghost-class="ghost"
+                            :needsBox="needsBox"
+                            @end="onEnd"
+                        />
                 </draggable>
-                <!-- END Need Box -->
+                <!-- END NEED BOX -->
 
-                <!-- Want Box -->
+                <!-- WANT BOX -->
                 <draggable
                     id="want-drag"
                     ghost-class="ghost"
@@ -35,29 +35,28 @@
                         :wantsBox="wantsBox"
                     />
                 </draggable>
-                <!-- END Need Box -->
+                <!-- END WANT BOX -->
 
-            </div> <!-- END Need/Want Box -->
+            </div> <!-- END NEED/WANT BOX -->
 
             <button @click="handleAdd">BUTTON</button>
-
             <!-- <AddNeedWant :onAdd="handleAdd" /> -->
 
-            <!-- Word Box -->
+            <!-- WORD BOX -->
             <draggable
                 ghost-class="ghost"
                 group="needsAndWants"
                 @end="onEnd"
+                v-model="wordBox"
             >
                 <WordBoxList
                     id="word-grid"
-                    v-model="wordBox"
                     :wordBox="wordBox"
                 />
             </draggable>
-            <!-- END Word Box -->
+            <!-- END WORD BOX -->
         
-    </div> <!-- END Main Div -->
+    </div> <!-- END MAIN DIV -->
 </template>
 
 <script>
@@ -94,7 +93,7 @@ export default {
                 { id:20, name: 'Travel', src: 'travel' },
                 { id:21, name: 'Gym Memberships', src: 'gym-membership' }
             ],
-            needsBox: [{ id:1, name:'asdf', src:'' }],
+            needsBox: [],
             wantsBox: [],
             oldIndex: '',
             newIndex: ''
@@ -113,35 +112,7 @@ export default {
             this.newIndex = event.newIndex;
         },
         handleAdd() {
-            let needItems = [];
-            // let wantItems = [];
-
-            for(let i = 0; i < this.needsBox.length; i++) {
-                let needItem = {};
-                if(this.needsBox[i].name !== '') {
-                    needItem.Id = this.needsBox[i].id;
-                    needItem.Name = this.needsBox[i].name;
-                    needItems.push(needItem);
-                }
-            }
-            console.log(needItems, this.needsBox);
-
-            // for(let i = 0; i < this.wantsBox.length; i++) {
-            //     let wantItem = {};
-            //     if(this.wantsBox[i].name !== '') {
-            //         wantItem.Id = this.wantsBox[i].id;
-            //         wantItem.Name = this.wantsBox[i].name;
-            //         wantItems.push(wantItem);
-            //     }
-            // }
-            /* LOCAL STORAGE */
-            // window.localStorage.setItem('needItems', JSON.stringify(needItems));
-            // window.localStorage.setItem('wantItems', JSON.stringify(wantItems));
-
-            // return api.addNeedsWants(needWant)
-            //     .then(saved => {
-            //         console.log('SUCCESS', saved);
-            //     });
+            console.log('here', this.needsBox[0]);
         }
     }
 };
@@ -155,8 +126,8 @@ export default {
 }
 
 #need-want-box-parent {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template: 1fr / repeat(2, 1fr);
     height: 150px;
 }
 
