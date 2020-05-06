@@ -17,6 +17,20 @@
                 @q3-answer="q3SubmittedAnswer"
             />
 
+
+            <input
+                type="submit"
+                value="Back"
+                :disabled="myAnswers.length === 0"
+                @click="lastPage"
+            />
+            <input
+                type="submit"
+                value="Confirm Answers"
+                v-if="myAnswers.length === 3"
+                @click="confirmAnswers"
+            />
+
         </form>
   </div>
 </template>
@@ -35,15 +49,18 @@ export default {
     methods: {
         q1SubmittedAnswer(questionOneAnswer){
             this.myAnswers.push(questionOneAnswer.choice);
-            console.log(this.myAnswers);
         },
         q2SubmittedAnswer(questionTwoAnswer){
             this.myAnswers.push(questionTwoAnswer.choice);
-            console.log(this.myAnswers);
         },
         q3SubmittedAnswer(questionThreeAnswer) {
             this.myAnswers.push(questionThreeAnswer.choice);
-            console.log(this.myAnswers);
+        },
+        confirmAnswers() {
+            this.$router.push('/Leaderboard');
+        },
+        lastPage() {
+            this.myAnswers.pop();
         }
     },
     components: {
