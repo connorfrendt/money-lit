@@ -1,101 +1,55 @@
 <template>
     <div>
-        <form @submit.prevent="checkAnswers">
-            <div class="question">
-                <div>Question: Foo or Bar?</div>
-                    <label>
-                        <input name="q1" value="FOO" type="radio" v-model="question1"/> <!-- Correct -->
-                        Foo
-                    </label>
+        <form>
 
-                    <label>
-                        <input name="q1" value="BAR" type="radio" v-model="question1"/>
-                        Bar
-                    </label>
+            <QuestionOne
+                v-if="myAnswers.length === 0"
+                @q1-answer="q1SubmittedAnswer"
+            />
 
-                    <label>
-                        <input name="q1" value="FOO BAR" type="radio" v-model="question1"/>
-                        Foo Bar
-                    </label>
+            <QuestionTwo
+                v-if="myAnswers.length === 1"
+                @q2-answer="q2SubmittedAnswer"
+            />
 
-                    <div v-if="isQ1Correct">{{ correct }}</div>
-                    <div v-if="isQ1Correct === false">{{ wrong }}</div>
-            </div>
-
-            <div class="question">
-                <div>Question: Foo1 or Bar1?</div>
-                    <label>
-                        <input name="q2" value="FOO1" type="radio" v-model="question2" />
-                        Foo1
-                    </label>
-
-                    <label>
-                        <input name="q2" value="BAR1" type="radio" v-model="question2" />
-                        Bar1
-                    </label>
-
-                    <label>
-                        <input name="q2" value="FOO BAR1" type="radio" v-model="question2"/>
-                        Foo Bar1
-                    </label>
-
-                    <div v-if="isQ2Correct">{{ correct }}</div>
-                    <div v-if="isQ2Correct === false">{{ wrong }}</div>
-            </div>
-
-            <div class="question">
-                <div>Question: Foo2 or Bar2?</div>
-                    <label>
-                        <input name="q3" value="FOO2" type="radio" v-model="question3"/>
-                        Foo2
-                    </label>
-
-                    <label>
-                        <input name="q3" value="BAR2" type="radio" v-model="question3"/>
-                        Bar2
-                    </label>
-
-                    <label>
-                        <input name="q3" value="FOO BAR2" type="radio" v-model="question3"/>
-                        Foo Bar2
-                    </label>
-
-                    <div v-if="isQ3Correct">{{ correct }}</div>
-                    <div v-if="isQ3Correct === false">{{ wrong }}</div>
-            </div>
-
-            <button>SUBMIT</button>
+            <QuestionThree
+                v-if="myAnswers.length === 2"
+                @q3-answer="q3SubmittedAnswer"
+            />
 
         </form>
   </div>
 </template>
 
 <script>
+import QuestionOne from './QuestionOne';
+import QuestionTwo from './QuestionTwo';
+import QuestionThree from './QuestionThree';
+
 export default {
     data() {
         return {
-            question1: null,
-            question2: null,
-            question3: null,
-            isQ1Correct: null,
-            isQ2Correct: null,
-            isQ3Correct: null,
-            correctAnswers: ['FOO', 'BAR1', 'FOO BAR2'],
-            correct: 'That\'s correct!',
-            wrong: 'Nope!  Try Again.',
+            myAnswers: []
         };
     },
     methods: {
-        checkAnswers() {
-            if(this.question1 === this.correctAnswers[0]) this.isQ1Correct = true;
-            if(this.question1 !== this.correctAnswers[0]) this.isQ1Correct = false;
-
-            if(this.question2 === this.correctAnswers[1]) this.isQ2Correct = true;
-            if(this.question2 !== this.correctAnswers[1]) this.isQ2Correct = false;
-
-            if(this.question3 === this.correctAnswers[2]) this.isQ3Correct = true;
-            if(this.question3 !== this.correctAnswers[2]) this.isQ3Correct = false;
+        q1SubmittedAnswer(questionOneAnswer){
+            this.myAnswers.push(questionOneAnswer.choice);
+            console.log(this.myAnswers);
+        },
+        q2SubmittedAnswer(questionTwoAnswer){
+            this.myAnswers.push(questionTwoAnswer.choice);
+            console.log(this.myAnswers);
+        },
+        q3SubmittedAnswer(questionThreeAnswer) {
+            this.myAnswers.push(questionThreeAnswer.choice);
+            console.log(this.myAnswers);
         }
+    },
+    components: {
+        QuestionOne,
+        QuestionTwo,
+        QuestionThree
     }
 };
 </script>
