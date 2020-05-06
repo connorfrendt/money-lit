@@ -1,6 +1,6 @@
 <template>
   <div>
-      
+      This is the Leaderboard
   </div>
 </template>
 
