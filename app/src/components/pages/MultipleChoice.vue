@@ -57,6 +57,8 @@ export default {
             this.myAnswers.push(questionThreeAnswer.choice);
         },
         confirmAnswers() {
+            let myAnswers = this.myAnswers;
+            this.$emit('these-are-my-answers', myAnswers);
             this.$router.push('/Leaderboard');
         },
         lastPage() {

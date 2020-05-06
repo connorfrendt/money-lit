@@ -21,6 +21,7 @@
             :user="user"
             :onSignUp="handleSignUp"
             :onSignIn="handleSignIn"
+            @these-are-my-answers="postAnswers"
         />
     </div>
 </template>
