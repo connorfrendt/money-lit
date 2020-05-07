@@ -17,6 +17,8 @@
                 Q2 Answer Three
             </label>
             
+            <div v-if="isCorrect === false">Nope!  Try Again.</div>
+
         <input type="submit" value="Submit" :disabled="!q2Choice">
   </form>
 </template>
@@ -25,7 +27,9 @@
 export default {
     data() {
         return {
-            q2Choice: null
+            q2Choice: null,
+            correctAnswer: 'q2answerTwo',
+            isCorrect: null
         };
     },
     methods: {
@@ -33,7 +37,13 @@ export default {
             let questionTwoAnswer = {
                 choice: this.q2Choice
             };
-            this.$emit('q2-answer', questionTwoAnswer);
+            if(this.q2Choice !== this.correctAnswer) {
+                this.isCorrect = false;
+            }
+            else {
+                this.isCorrect = true;
+                this.$emit('q2-answer', questionTwoAnswer);
+            }
         }
     }
 };

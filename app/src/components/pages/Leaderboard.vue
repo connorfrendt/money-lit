@@ -7,7 +7,7 @@
 <script>
 export default {
     props: {
-        postAnswers:
+        postAnswers: null
     }
 };
 </script>

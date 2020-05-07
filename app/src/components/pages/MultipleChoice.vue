@@ -19,6 +19,7 @@
 
 
             <input
+                v-if="myAnswers.length > 0"
                 type="submit"
                 value="Back"
                 :disabled="myAnswers.length === 0"

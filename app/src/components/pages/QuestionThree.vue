@@ -3,19 +3,21 @@
         <div>Question 3?</div>
 
             <label>
-                <input type="radio" value="answerOne" v-model="q3Choice">
+                <input type="radio" value="Answer One" v-model="q3Choice">
                 Answer One
             </label>
 
             <label>
-                <input type="radio" value="answerTwo" v-model="q3Choice">
+                <input type="radio" value="Answer Two" v-model="q3Choice">
                 Answer Two
             </label>
 
             <label>
-                <input type="radio" value="answerThree" v-model="q3Choice">
+                <input type="radio" value="Answer Three" v-model="q3Choice">
                 Answer Three
             </label>
+
+            <div v-if="isCorrect === false">Nope!  Try Again.</div>
 
         <input type="submit" value="Submit" :disabled="!q3Choice">
   </form>
@@ -25,7 +27,9 @@
 export default {
     data() {
         return {
-            q3Choice: null
+            q3Choice: null,
+            correctAnswer: 'Answer Three',
+            isCorrect: null
         };
     },
     methods: {
@@ -33,7 +37,13 @@ export default {
             let questionThreeAnswer = {
                 choice: this.q3Choice
             };
-            this.$emit('q3-answer', questionThreeAnswer);
+            if(this.q3Choice !== this.correctAnswer){
+                this.isCorrect = false;
+            }
+            else {
+                this.isCorrect = true;
+                this.$emit('q3-answer', questionThreeAnswer);
+            }
         }
     }
 };
