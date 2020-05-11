@@ -6,9 +6,9 @@
 
 <script>
 export default {
-    props: {
-        postAnswers: null
-    }
+    // props: {
+    //     postAnswers: null
+    // }
 };
 </script>
 

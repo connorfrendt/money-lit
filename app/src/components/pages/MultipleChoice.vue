@@ -8,7 +8,7 @@
             />
 
             <QuestionTwo
-                v-if="myAnswers.length === 1"
+                v-if="myAnswers.length === 2"
                 @q2-answer="q2SubmittedAnswer"
             />
 
@@ -48,8 +48,11 @@ export default {
         };
     },
     methods: {
-        q1SubmittedAnswer(questionOneAnswer){
-            this.myAnswers.push(questionOneAnswer.choice);
+        q1SubmittedAnswer(q1Answers){
+            // this.myAnswers.push(q1Answers);
+            for(let i = 0; i < q1Answers.length; i++) {
+                this.myAnswers.push(q1Answers[i]);
+            }
         },
         q2SubmittedAnswer(questionTwoAnswer){
             this.myAnswers.push(questionTwoAnswer.choice);
@@ -58,8 +61,8 @@ export default {
             this.myAnswers.push(questionThreeAnswer.choice);
         },
         confirmAnswers() {
-            let myAnswers = this.myAnswers;
-            this.$emit('these-are-my-answers', myAnswers);
+            // let myAnswers = this.myAnswers;
+            // this.$emit('these-are-my-answers', myAnswers);
             this.$router.push('/Leaderboard');
         },
         lastPage() {
@@ -82,15 +85,4 @@ export default {
     background-color: rgb(204, 156, 252);
 }
 
-.correct{
-    background-color: lightgreen;
-}
-
-.wrong {
-    background-color: rgb(255, 0, 0)
-}
-
-#hello {
-    background-color: red;
-}
 </style>
