@@ -5,10 +5,11 @@
             <QuestionOne
                 v-if="myAnswers.length === 0"
                 @q1-answer="q1SubmittedAnswer"
+                @q1-bool="q1Boolean"
             />
 
             <QuestionTwo
-                v-if="myAnswers.length === 2"
+                v-if="questionOneBoolean"
                 @q2-answer="q2SubmittedAnswer"
             />
 
@@ -44,30 +45,31 @@ import QuestionThree from './QuestionThree';
 export default {
     data() {
         return {
-            myAnswers: []
+            myAnswers: [],
+            questionOneBoolean: null
         };
     },
     methods: {
-        q1SubmittedAnswer(q1Answers){
-            // this.myAnswers.push(q1Answers);
-            for(let i = 0; i < q1Answers.length; i++) {
-                this.myAnswers.push(q1Answers[i]);
-            }
+        q1SubmittedAnswer(myQ1Answers){
+            this.myAnswers.push(myQ1Answers);
         },
-        q2SubmittedAnswer(questionTwoAnswer){
-            this.myAnswers.push(questionTwoAnswer.choice);
-        },
-        q3SubmittedAnswer(questionThreeAnswer) {
-            this.myAnswers.push(questionThreeAnswer.choice);
-        },
-        confirmAnswers() {
-            // let myAnswers = this.myAnswers;
-            // this.$emit('these-are-my-answers', myAnswers);
-            this.$router.push('/Leaderboard');
-        },
-        lastPage() {
-            this.myAnswers.pop();
+        q1Boolean(isQ1Correct) {
+            this.questionOneBoolean = isQ1Correct;
         }
+        // q2SubmittedAnswer(questionTwoAnswer){
+        //     this.myAnswers.push(questionTwoAnswer.choice);
+        // },
+        // q3SubmittedAnswer(questionThreeAnswer) {
+        //     this.myAnswers.push(questionThreeAnswer.choice);
+        // },
+        // confirmAnswers() {
+        //     // let myAnswers = this.myAnswers;
+        //     // this.$emit('these-are-my-answers', myAnswers);
+        //     this.$router.push('/Leaderboard');
+        // },
+        // lastPage() {
+        //     this.myAnswers.pop();
+        // }
     },
     components: {
         QuestionOne,

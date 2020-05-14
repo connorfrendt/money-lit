@@ -18,7 +18,8 @@
                     </label>
                 </div>
             </div>
-            <div v-if="isCorrect === false">Nope!  Try Again.</div>
+            <div v-if="isQ1Correct === false">Nope!  Try Again.</div>
+            <div v-if="isQ1Correct">You did it!</div>
             
         <input type="submit" value="Submit">
   </form>
@@ -28,7 +29,7 @@
 export default {
     data() {
         return {
-            isCorrect: null,
+            isQ1Correct: null,
             myQ1Answers: [],
             questionOneChoices: [
                 { option: 'Tap Water', checked: false },
@@ -43,17 +44,38 @@ export default {
     },
     methods: {
         onSubmitQ1() {
-            if(this.questionOneChoices[0].checked === true &&
-               this.questionOneChoices[1].checked === true) {
+
+            for(let i = 0; i < this.questionOneChoices.length; i++) {
+                if(this.questionOneChoices[i].checked === true) {
+                    this.myQ1Answers.push(this.questionOneChoices[i]);
+                }
+            }
+
+            let hasTapWater = (CorrElement) => CorrElement.option === 'Tap Water';
+            let hasFilteredWater = (CorrElement) => CorrElement.option === 'Filtered Water';
+
+            let hasIncorrectAnswer = (InCorrElement) => {
+                return InCorrElement.option === 'Bottled Water'
+                    || InCorrElement.option === 'Soda'
+                    || InCorrElement.option === 'Coffeehouse Drinks'
+                    || InCorrElement.option === 'Juices';
+            };
+
+            if(this.myQ1Answers.some(hasTapWater)
+            && this.myQ1Answers.some(hasFilteredWater)
+            && this.myQ1Answers.some(hasIncorrectAnswer) === false) {
+                this.isQ1Correct = true;
+                let isQ1Correct = this.isQ1Correct;
                 let myQ1Answers = this.myQ1Answers;
-                this.isCorrect = true;
-                this.myQ1Answers.push(this.questionOneChoices[0]);
-                this.myQ1Answers.push(this.questionOneChoices[1]);
+                
                 this.$emit('q1-answer', myQ1Answers);
+                this.$emit('q1-bool', isQ1Correct);
             }
             else {
-                this.isCorrect = false;
-                this.questionOneChoices.map(x => x.checked = false);
+                console.log('Try Again!', this.myQ1Answers);
+                this.isQ1Correct = false;
+                this.myQ1Answers = [];
+                this.questionOneChoices.map(choice => choice.checked = false);
             }
         }
     }
