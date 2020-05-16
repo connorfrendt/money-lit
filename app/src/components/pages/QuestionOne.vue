@@ -7,21 +7,21 @@
             easy for this inexpensive need to turn into a want for more costly things like
             bottled water, soda, coffeehouse drinks, and juices.
         </div>
-            <br />
+            <br /> <!-- USE CSS!!! -->
         <div>Select the best choices that you actually <u>need</u>:</div>
-            <br />
-            <div id="bar">
-                <div id="foo">
-                    <label v-for="questionOneChoice in questionOneChoices" :key="questionOneChoice.option">
-                        <input type="checkbox" v-model="questionOneChoice.checked">
-                        {{ questionOneChoice.option }}
-                    </label>
-                </div>
+            <br /> <!-- USE CSS!!! -->
+            <div id="question-one">
+                <label v-for="questionOneChoice in questionOneChoices" :key="questionOneChoice.option">
+                    <input type="checkbox" v-model="questionOneChoice.checked">
+                    {{ questionOneChoice.option }}
+                </label>
             </div>
+
             <div v-if="isQ1Correct === false">Nope!  Try Again.</div>
             <div v-if="isQ1Correct">You did it!</div>
             
         <input type="submit" value="Submit">
+        <router-link to="/QuestionTwo" tag="button" :disabled="isDisabled">BUTTON</router-link>
   </form>
 </template>
 
@@ -51,14 +51,14 @@ export default {
                 }
             }
 
-            let hasTapWater = (CorrElement) => CorrElement.option === 'Tap Water';
-            let hasFilteredWater = (CorrElement) => CorrElement.option === 'Filtered Water';
+            let hasTapWater = (corrElement) => corrElement.option === 'Tap Water';
+            let hasFilteredWater = (corrElement) => corrElement.option === 'Filtered Water';
 
-            let hasIncorrectAnswer = (InCorrElement) => {
-                return InCorrElement.option === 'Bottled Water'
-                    || InCorrElement.option === 'Soda'
-                    || InCorrElement.option === 'Coffeehouse Drinks'
-                    || InCorrElement.option === 'Juices';
+            let hasIncorrectAnswer = (inCorrElement) => {
+                return inCorrElement.option === 'Bottled Water'
+                    || inCorrElement.option === 'Soda'
+                    || inCorrElement.option === 'Coffeehouse Drinks'
+                    || inCorrElement.option === 'Juices';
             };
 
             if(this.myQ1Answers.some(hasTapWater)
@@ -72,7 +72,6 @@ export default {
                 this.$emit('q1-bool', isQ1Correct);
             }
             else {
-                console.log('Try Again!', this.myQ1Answers);
                 this.isQ1Correct = false;
                 this.myQ1Answers = [];
                 this.questionOneChoices.map(choice => choice.checked = false);
@@ -83,7 +82,7 @@ export default {
 </script>
 
 <style>
-#foo {
+#question-one {
     margin: 0 auto;
     text-align: left;
     width: 200px;

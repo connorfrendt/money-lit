@@ -3,23 +3,26 @@
         <form>
 
             <QuestionOne
-                v-if="myAnswers.length === 0"
+                v-if="!questionOneBoolean
+                && !questionTwoBoolean
+                && !quesitonThreeBoolean"
                 @q1-answer="q1SubmittedAnswer"
                 @q1-bool="q1Boolean"
             />
 
             <QuestionTwo
-                v-if="questionOneBoolean"
+                v-if="questionOneBoolean && !questionTwoBoolean"
                 @q2-answer="q2SubmittedAnswer"
+                @q2-bool="q2Boolean"
             />
 
             <QuestionThree
-                v-if="myAnswers.length === 2"
+                v-if="questionTwoBoolean && !quesitonThreeBoolean"
                 @q3-answer="q3SubmittedAnswer"
             />
 
 
-            <input
+            <!-- <input
                 v-if="myAnswers.length > 0"
                 type="submit"
                 value="Back"
@@ -31,7 +34,7 @@
                 value="Confirm Answers"
                 v-if="myAnswers.length === 3"
                 @click="confirmAnswers"
-            />
+            /> -->
 
         </form>
   </div>
@@ -46,22 +49,24 @@ export default {
     data() {
         return {
             myAnswers: [],
-            questionOneBoolean: null
+            questionOneBoolean: null,
+            questionTwoBoolean: null
         };
     },
     methods: {
-        q1SubmittedAnswer(myQ1Answers){
+        q1SubmittedAnswer(myQ1Answers) {
             this.myAnswers.push(myQ1Answers);
         },
         q1Boolean(isQ1Correct) {
             this.questionOneBoolean = isQ1Correct;
+        },
+        q2SubmittedAnswer(myQ2Answers) {
+            this.myAnswers.push(myQ2Answers);
+        },
+        q2Boolean(isQ2Correct) {
+            this.questionTwoBoolean = isQ2Correct;
         }
-        // q2SubmittedAnswer(questionTwoAnswer){
-        //     this.myAnswers.push(questionTwoAnswer.choice);
-        // },
-        // q3SubmittedAnswer(questionThreeAnswer) {
-        //     this.myAnswers.push(questionThreeAnswer.choice);
-        // },
+        
         // confirmAnswers() {
         //     // let myAnswers = this.myAnswers;
         //     // this.$emit('these-are-my-answers', myAnswers);

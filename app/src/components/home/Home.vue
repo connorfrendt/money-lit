@@ -21,7 +21,6 @@
             :user="user"
             :onSignUp="handleSignUp"
             :onSignIn="handleSignIn"
-            
         />
     </div>
 </template>
