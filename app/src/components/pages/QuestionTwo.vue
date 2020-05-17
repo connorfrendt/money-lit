@@ -3,7 +3,7 @@
         <div><b>Food</b></div>
 
         <div>
-            out bodies need food as fuel, the healthier foods the better = nutritous home cooked or frozen meals
+            Our bodies need food as fuel, the healthier foods the better = nutritous home cooked or frozen meals
             including veggies and essential vitamins are some examples.  However, this basic need can turn into a
             want for more expensive and less healthy options like eating out or fast food.
         </div>

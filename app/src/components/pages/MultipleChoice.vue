@@ -1,85 +1,53 @@
 <template>
     <div>
         <form>
+            <div>Select the best choices that you actually <u>need</u>:</div>
 
-            <QuestionOne
-                v-if="!questionOneBoolean
-                && !questionTwoBoolean
-                && !quesitonThreeBoolean"
-                @q1-answer="q1SubmittedAnswer"
-                @q1-bool="q1Boolean"
-            />
+            <b>Water</b>
+             <br /> <!-- USE CSS!!! -->
+            <div id="question-one">
+                <label v-for="questionOneChoice in questionOneChoices" :key="questionOneChoice.option">
+                    <input type="checkbox" v-model="questionOneChoice.checked">
+                    {{ questionOneChoice.option }}
+                </label>
+            </div>
 
-            <QuestionTwo
-                v-if="questionOneBoolean && !questionTwoBoolean"
-                @q2-answer="q2SubmittedAnswer"
-                @q2-bool="q2Boolean"
-            />
+            <div><b>Food</b></div>
 
-            <QuestionThree
-                v-if="questionTwoBoolean && !quesitonThreeBoolean"
-                @q3-answer="q3SubmittedAnswer"
-            />
-
-
-            <!-- <input
-                v-if="myAnswers.length > 0"
-                type="submit"
-                value="Back"
-                :disabled="myAnswers.length === 0"
-                @click="lastPage"
-            />
-            <input
-                type="submit"
-                value="Confirm Answers"
-                v-if="myAnswers.length === 3"
-                @click="confirmAnswers"
-            /> -->
-
+            <div id="question-two">
+                <label v-for="questionTwoChoice in questionTwoChoices" :key="questionTwoChoice.option">
+                    <input type="checkbox" v-model="questionTwoChoice.checked">
+                    {{ questionTwoChoice.option }}
+                </label>
+            </div>
         </form>
   </div>
 </template>
 
 <script>
-import QuestionOne from './QuestionOne';
-import QuestionTwo from './QuestionTwo';
-import QuestionThree from './QuestionThree';
-
 export default {
     data() {
         return {
-            myAnswers: [],
-            questionOneBoolean: null,
-            questionTwoBoolean: null
+            questionOneChoices: [
+                { option: 'Tap Water', checked: false },
+                { option: 'Filtered Water', checked: false },
+                { option: 'Drip Coffee', checked: false },
+                { option: 'Bottled Water', checked: false },
+                { option: 'Soda', checked: false },
+                { option: 'Coffeehouse Drinks', checked: false },
+                { option: 'Juices', checked: false },
+            ],
+            questionTwoChoices: [
+                { option: 'Home Cooked Meals', checked: false },
+                { option: 'Nutritous Frozen Foods (complete meals including vegetables)', checked: false },
+                { option: 'Frozen Foods (pizza, fries, etc.)', checked: false },
+                { option: 'Restaurants', checked: false },
+                { option: 'Fast Food', checked: false }
+            ]
         };
     },
     methods: {
-        q1SubmittedAnswer(myQ1Answers) {
-            this.myAnswers.push(myQ1Answers);
-        },
-        q1Boolean(isQ1Correct) {
-            this.questionOneBoolean = isQ1Correct;
-        },
-        q2SubmittedAnswer(myQ2Answers) {
-            this.myAnswers.push(myQ2Answers);
-        },
-        q2Boolean(isQ2Correct) {
-            this.questionTwoBoolean = isQ2Correct;
-        }
         
-        // confirmAnswers() {
-        //     // let myAnswers = this.myAnswers;
-        //     // this.$emit('these-are-my-answers', myAnswers);
-        //     this.$router.push('/Leaderboard');
-        // },
-        // lastPage() {
-        //     this.myAnswers.pop();
-        // }
-    },
-    components: {
-        QuestionOne,
-        QuestionTwo,
-        QuestionThree
     }
 };
 </script>

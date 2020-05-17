@@ -1,13 +1,5 @@
 <template>
     <form @submit.prevent="onSubmitQ1">
-        <div><b>Water</b></div>
-
-        <div>
-            To stay hydrated, all you need is tap water or filtered water. However, it’s
-            easy for this inexpensive need to turn into a want for more costly things like
-            bottled water, soda, coffeehouse drinks, and juices.
-        </div>
-            <br /> <!-- USE CSS!!! -->
         <div>Select the best choices that you actually <u>need</u>:</div>
             <br /> <!-- USE CSS!!! -->
             <div id="question-one">
